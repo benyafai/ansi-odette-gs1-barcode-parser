@@ -1162,9 +1162,9 @@ export const ApplicationIdentifiers = <AIList>{
 
 export const BarcodeParser = (barcode: string) => {
   let barcodeData = barcode
-    .replace("[)>" + rs + "06" + gs, "")
-    .replace(rs + eot, "")
-    .split(gs);
+    .replace(/^\[\)>\x1e06\x1d/, "") // Strip head
+    .replace(/\x1e\x04$/, "") // Strip tail
+    .split("\x1d"); // Split records
 
   if (typeof barcodeData === "string") {
     barcodeData = Object.create(barcodeData);
