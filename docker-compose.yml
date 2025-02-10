@@ -1,0 +1,19 @@
+services:
+  parser:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    container_name: parser
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${ENV_NAME}.rule=Host(`${HTTP_URI}`)"
+      - "traefik.http.routers.${ENV_NAME}.entrypoints=websecure"
+      - "traefik.http.routers.${ENV_NAME}.tls.certresolver=http"
+    networks:
+      - web
+    env_file:
+      - .env
+networks:
+  web:
+    external: true
