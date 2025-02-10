@@ -74,6 +74,9 @@ button:focus-visible {
 small {
   white-space: pre-wrap;
 }
+summary {
+  cursor: pointer;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
