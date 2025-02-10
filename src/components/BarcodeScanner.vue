@@ -25,6 +25,8 @@ import { Html5QrcodeScanner } from 'html5-qrcode'
 import { type AIList } from '../types/ApplicationIdentifierType'
 import { BarcodeParser } from '../uses/BarcodeParser'
 import { BarcodeFormatter } from '../uses/BarcodeFormatter'
+import { Odette } from '../uses/Parser.Odette'
+import { GS1 } from '../uses/Parser.GS1'
 
 export default defineComponent({
   name: 'Barcodes',
@@ -51,8 +53,13 @@ export default defineComponent({
       // reset results
       this.parsedBarcode = <AIList>{}
       this.formattedBarcode = ""
-      // parse barcode
-      this.parsedBarcode = BarcodeParser(decodedText)
+      // Identify format and parse barcode
+      if (new RegExp(/^\[\)>\x1e06\x1d.*\x1e\x04$/).test(decodedText)) {
+        this.parsedBarcode = BarcodeParser(decodedText, Odette)
+      } else if (new RegExp(/^\]d2.*/).test(decodedText)) {
+        this.parsedBarcode = BarcodeParser(decodedText, GS1)
+      }
+      // Render our non-human-readable chacters for actual humans to see!
       this.formattedBarcode = BarcodeFormatter(decodedText)
     }
   }
