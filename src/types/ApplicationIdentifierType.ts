@@ -8,5 +8,5 @@ export type AIType = {
   desc: string;
   value?: string | number;
   processed?: string | number;
-  formatter?: string;
+  overrideType?: string;
 };
