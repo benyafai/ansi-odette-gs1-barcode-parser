@@ -8,9 +8,11 @@
       <template v-for="(ai) in parsedBarcode" :key="ai.identifier">
         <template v-if="ai.value">
           <h2>{{ ai.value }}</h2>
-          <p><b>{{ '[' + ai.identifier + '] ' + ai.title }}</b></p>
+          <details>
+            <summary><b>{{ '[' + ai.identifier + '] ' + ai.title }}</b></summary>
+            <small>{{ ai.desc }}</small>
+          </details>
           <p v-if="ai.processed">{{ ai.processed }}</p>
-          <p><small>{{ ai.desc }}</small></p>
         </template>
       </template>
     </div>
