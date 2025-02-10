@@ -994,7 +994,45 @@ export const Odette = <AIList>{
   // TODO // Locations 27L-55L
   // 56L-999L: Reserved for future assignment
 
-  // TODO // Category 13 (M): Reserved
+  // Category 13 (M): Reserved
+  // M: Reserved
+  // 1M-9M: Reserved
+  "10M": {
+    identifier: "10M",
+    format: "",
+    title: "Army Form 2410 data",
+    reg: /^(10M)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Format is data value preceded by the block number of the form 2410. Field lengths and acceptable characters can be found at; http://www.apd.army.mil/pdffiles/p738_751.pdf.",
+  },
+  "11M": {
+    identifier: "11M",
+    format: "",
+    title: "Army Form 2408 data",
+    reg: /^(11M)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Format is data value preceded by the block number of the form 2408. Field lengths and acceptable characters can be found at; http://www.apd.army.mil/pdffiles/p738_751.pdf.",
+  },
+  "12M": {
+    identifier: "12M",
+    format: "",
+    title: "Army Form 2407 data",
+    reg: /^(12M)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Format is data value preceded by the block number of the form 2407. Field lengths and acceptable characters can be found at; http://www.apd.army.mil/pdffiles/p738_751.pdf.",
+  },
+  "13M": {
+    identifier: "13M",
+    format: "",
+    title: "Air Force Form 95 data",
+    reg: /^(13M)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Format is data value preceded by the block number of the form 95. Field lengths and acceptable characters can be found at; http://www.gsa.gov/portal/forms/download/116418.",
+  },
+  "14M": {
+    identifier: "14M",
+    format: "",
+    title: "Navy Form 4790 data",
+    reg: /^(14M)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Format is data value preceded by the block number of the form 2410. Field lengths and acceptable characters can be found at; http://www.navair.navy.mil/logistics/4790/library/Chapter%2015.pdf.",
+  },
+  // 15M-999M: Reserved for future assignment
 
   // TODO // Category 14 (N): Industry Assigned Codes
 
