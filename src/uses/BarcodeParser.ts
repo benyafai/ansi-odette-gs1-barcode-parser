@@ -1129,10 +1129,3 @@ export const BarcodeParser = (barcode: string) => {
   });
   return ApplicationIdentifiers;
 };
-
-export const BarcodeParserReset = () => {
-  Object.entries(ApplicationIdentifiers).forEach(([Identifier]) => {
-    ApplicationIdentifiers[Identifier].value = "";
-  });
-  return ApplicationIdentifiers;
-};

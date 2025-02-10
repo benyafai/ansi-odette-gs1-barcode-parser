@@ -21,7 +21,7 @@
 import { defineComponent } from 'vue'
 import { Html5QrcodeScanner } from 'html5-qrcode'
 import { type AIList } from '../types/ApplicationIdentifierType'
-import { BarcodeParser, BarcodeParserReset } from '../uses/BarcodeParser'
+import { BarcodeParser } from '../uses/BarcodeParser'
 import { BarcodeFormatter } from '../uses/BarcodeFormatter'
 
 export default defineComponent({
@@ -47,7 +47,7 @@ export default defineComponent({
   methods: {
     onScanSuccess (decodedText: string) {
       // reset results
-      this.parsedBarcode = BarcodeParserReset()
+      this.parsedBarcode = <AIList>{}
       this.formattedBarcode = ""
       // parse barcode
       this.parsedBarcode = BarcodeParser(decodedText)
