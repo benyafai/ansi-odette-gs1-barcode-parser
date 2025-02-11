@@ -324,13 +324,15 @@ export const Odette = <AIList>{
     title: "Date",
     reg: /^(5D)([\x30-\x39]{6}[\x30-\x39\x41-\x5A\x61-\x7A]{3})/,
     desc: "ISO format YYMMDD, immediately followed by an ANSI X12.3 Data Element Number 374 Qualifier providing a code specifying type of date (e.g., ship date, manufacture date).",
+    overrideType: "ANSIDateQualifier",
   },
   "6D": {
     identifier: "6D",
     format: "an2+n8+an3",
     title: "Date",
     reg: /^(6D)([\x30-\x39]{8}[\x30-\x39\x41-\x5A\x61-\x7A]{3})/,
-    desc: "ISO format YYMMDD, immediately followed by an ANSI X12.3 Data Element Number 374 Qualifier providing a code specifying type of date (e.g., ship date, manufacture date).",
+    desc: "ISO format YYYYMMDD, immediately followed by an ANSI X12.3 Data Element Number 374 Qualifier providing a code specifying type of date (e.g., ship date, manufacture date).",
+    overrideType: "ANSIDateQualifier",
   },
   "7D": {
     identifier: "7D",
@@ -1508,6 +1510,7 @@ export const Odette = <AIList>{
     title: "Hazardous Material Code ",
     reg: /^(10P)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "As defined by ANSI X12.3 in the format Data Element 208 (1-character code qualifier) followed by Data Element 209 (Hazardous Material Code).",
+    overrideType: "ANSIHazardQualifier",
   },
   "11P": {
     identifier: "11P",
@@ -1762,6 +1765,7 @@ export const Odette = <AIList>{
     title: "Unit of Measure",
     reg: /^(3Q)([\x41-\x5A\x61-\x7A]{2})/,
     desc: "As defined by the two character ANSI X12.3 Data Element Number 355 Unit of Measurement Code.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "4Q": {
     identifier: "4Q",
@@ -1792,6 +1796,7 @@ export const Odette = <AIList>{
     title: "Quantity, Amount, or Number of Pieces",
     reg: /^(7Q)([\x2E\x30-\x39]{1,8}[\x41-\x5A\x61-\x7A]{2})/,
     desc: "In the format: Quantity followed by the two character ANSI X12.3 Data Element Number 355 Unit of Measurement Code",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "8Q": {
     identifier: "8Q",
@@ -1863,6 +1868,7 @@ export const Odette = <AIList>{
     title: "Cube",
     reg: /^(18Q)([\x30-\x39]+(?:CR|CF))/,
     desc: "Cube expressed in cubic meters or cubic feet followed by the ANSI X12.3 data element number 355 unit of measure code (CR of CF). No implied decimal point.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "19Q": {
     identifier: "19Q",
@@ -1870,6 +1876,7 @@ export const Odette = <AIList>{
     title: "Width",
     reg: /^(19Q)([\x30-\x39]+(?:LC|LF))/,
     desc: "Width expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure code (LC or LF). No implied decimal point.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "20Q": {
     identifier: "20Q",
@@ -1877,6 +1884,7 @@ export const Odette = <AIList>{
     title: "Height",
     reg: /^(20Q)([\x30-\x39]+(?:LC|LF))/,
     desc: "Height expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure code (LC or LF). No implied decimal point.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "21Q": {
     identifier: "21Q",
@@ -1884,6 +1892,7 @@ export const Odette = <AIList>{
     title: "Length",
     reg: /^(21Q)([\x30-\x39]+(?:LC|LF))/,
     desc: "Length expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure code (LC or LF). No implied decimal point.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "22Q": {
     identifier: "22Q",
@@ -1891,6 +1900,7 @@ export const Odette = <AIList>{
     title: "Net Weight of Shipment",
     reg: /^(21Q)([\x30-\x39]+(?:LB|KG))/,
     desc: "Net Weight Of Shipment expressed in pounds or kilograms (kilos) followed by the ANSI X12.3 data element number 355 unit of measure (LB or KG). No implied decimal point.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "23Q": {
     identifier: "23Q",
@@ -1898,6 +1908,7 @@ export const Odette = <AIList>{
     title: "Van Length",
     reg: /^(23Q)([\x30-\x39]+(?:LC|LF))/,
     desc: "Van Length expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure (LC or LF). No implied decimal point.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "24Q": {
     identifier: "24Q",
@@ -1905,6 +1916,7 @@ export const Odette = <AIList>{
     title: "Inside Cube of Van",
     reg: /^(24Q)([\x30-\x39]+(?:CR|CF))/,
     desc: "Inside Cube of a Van expressed in cubic meters or cubic feet followed by the ANSI X12.3 data element number 355 of unit measure code (CR or CF). No implied decimal point.",
+    overrideType: "ANSIUnitOfMeasure",
   },
   "25Q": {
     identifier: "25Q",

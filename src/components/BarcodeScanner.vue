@@ -25,8 +25,8 @@ import { Html5QrcodeScanner } from 'html5-qrcode'
 import { type AIList } from '../types/ApplicationIdentifierType'
 import { BarcodeParser } from '../uses/BarcodeParser'
 import { BarcodeFormatter } from '../uses/BarcodeFormatter'
-import { Odette } from '../uses/Parser.Odette'
-import { GS1 } from '../uses/Parser.GS1'
+import { Odette } from '../uses/ApplicationIdentifiers.Odette'
+import { GS1 } from '../uses/ApplicationIdentifiers.GS1'
 
 export default defineComponent({
   name: 'Barcodes',
