@@ -2066,22 +2066,182 @@ export const Odette = <AIList>{
   T: {
     identifier: "T",
     format: "",
-    title: "Serial Number",
+    title: "Traceability Number (Customer)",
     reg: /^(T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Traceability Number assigned by the Customer to identify/trace a unique group of entities (e.g., lot, batch, heat).",
   },
   "1T": {
     identifier: "1T",
     format: "",
-    title: "Traceability Number",
+    title: "Traceability Number (Supplier)",
     reg: /^(1T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Traceability Number assigned by the Supplier to identify/trace a unique group of entities (e.g., lot, batch, heat).",
   },
-  // TODO // 2T-34T
+  // 2T: Reserved
+  "3T": {
+    identifier: "3T",
+    format: "",
+    title: "Exclusive Assignment",
+    reg: /^(3T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "U.S. EPA vehicle identification for emissions testing.",
+  },
+  // 4T-19T: Reserved
+  "20T": {
+    identifier: "20T",
+    format: "",
+    title: "First Level (Customer)",
+    reg: /^(20T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Customer Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "21T": {
+    identifier: "21T",
+    format: "",
+    title: "Second Level (Customer)",
+    reg: /^(21T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Customer Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "22T": {
+    identifier: "22T",
+    format: "",
+    title: "Third Level (Customer)",
+    reg: /^(22T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Customer Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "23T": {
+    identifier: "23T",
+    format: "",
+    title: "Fourth Level (Customer)",
+    reg: /^(23T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Customer Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "24T": {
+    identifier: "24T",
+    format: "",
+    title: "Fifth Level (Customer)",
+    reg: /^(24T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Customer Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "25T": {
+    identifier: "25T",
+    format: "",
+    title: "Party To The Transaction",
+    reg: /^(25T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Assigned by a holder of a Company Identification Number (CIN) and including the related Issuing Agency Code (IAC) in accordance with ISO/IEC 15459 and its registry, structured as a sequence of 3 concatenated data elements: IAC, followed by CIN, followed by the supplier assigned traceability number that is unique within the CIN holder's domain.",
+  },
+  "26T": {
+    identifier: "26T",
+    format: "",
+    title: "Batch Identifier",
+    reg: /^(26T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Comprising the concatenation of either:\n⎯ a data identifier 26S mail processing equipment identifier,\n   or\n⎯ a data identifier 20K license identifier, or\n⎯ a data identifier 18V party identifier that:\n   ⎯ is distinct from any other ISO/IEC 15459 compliant identifier within the domain of the issuing agency concerned;\n   ⎯ cannot be derived from another party identifier or any other ISO/IEC 15459 compliant identifier, issued under the same issuing agency, by the simple addition of characters to, or their removal from, its end;\nwith a data identifier 27T batch number, the two being separated by a dash (-) character.",
+  },
+  "27T": {
+    identifier: "27T",
+    format: "",
+    title: "Batch Number",
+    reg: /^(27T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "issued under the control of an identified party or unit of processing equipment, or under the provisions of an identified license, that:\n⎯ uniquely distinguishes one batch of related items from all other batches to which a batch number is assigned by the party or equipment, or under the license, concerned;\n⎯ comprises a string of maximum length 10 characters, of which the first (numeric) character indicates the number of following characters, each of which is taken from the set {0-9; A-Z}.",
+  },
+  // 28T-29T: Reserved
+  "30T": {
+    identifier: "30T",
+    format: "",
+    title: "First Level (Supplier)",
+    reg: /^(30T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Supplier Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "31T": {
+    identifier: "31T",
+    format: "",
+    title: "Second Level (Supplier)",
+    reg: /^(31T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Supplier Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "32T": {
+    identifier: "32T",
+    format: "",
+    title: "Third Level (Supplier)",
+    reg: /^(32T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Supplier Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "33T": {
+    identifier: "33T",
+    format: "",
+    title: "Fourth Level (Supplier)",
+    reg: /^(33T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Supplier Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
+  "34T": {
+    identifier: "34T",
+    format: "",
+    title: "Fifth Level (Supplier)",
+    reg: /^(34T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Supplier Assigned. Can be used to provide for identification of a group of entities, which is different than or in addition to identification provided by “T”.",
+  },
   // 35T-999T: Reserved for future assignment
 
   // ============================================================================
-  // TODO // Category 21 (U): UPU/MH 10/SC8 Agreed Upon Codes
+  // Category 21 (U): UPU/MH 10/SC8 Agreed Upon Codes
+  // U-4U: Reserved
+  "5U": {
+    identifier: "5U",
+    format: "",
+    title: "Postal Service Data",
+    reg: /^(5U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Specification of a postal service and associated process data in accordance with UPU standard S25 data construct “Service Data”.",
+  },
+  "6U": {
+    identifier: "6U",
+    format: "",
+    title: "Licensing Post Data",
+    reg: /^(6U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "In accordance with the specification in UPU standard S25.",
+  },
+  // 7U-14U: Reserved for Assignment for UPU needs in collaboration with ASC MH10/SC 8/WG 2
+  "15U": {
+    identifier: "15U",
+    format: "",
+    title: "“Supplementary Postal Service Data”",
+    reg: /^(15U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Specification of supplementary postal service and associated process data in accordance with UPU standard S25 data construct “Supplementary Service Data”.",
+  },
+  "16U": {
+    identifier: "16U",
+    format: "",
+    title: "Postal Administration Identifications",
+    reg: /^(16U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Being the identification, expressed in accordance with the specification in UPU standard S25, of one or more postal administrations involved in the processing of a mail item or batch.",
+  },
+  "17U": {
+    identifier: "17U",
+    format: "",
+    title: "UPU Location Code",
+    reg: /^(17U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Being a code identifying a location or geographic area, or an associated group of such locations or areas, that has relevance to a related transaction and that complies with one of the structures defined in a) to g) below:\na) two upper case alphabetic characters corresponding to the ISO 3166-1 two alpha country code of the country in which, or consisting of which, the location(s) or area(s) are situated;\nb) three upper case alphabetic characters corresponding to the IATA code of the airport or city in, close to, or consisting of which the location(s) or area(s) are situated;\nc) four or more characters of which the first three correspond to an ISO 3166-1 country code followed by a dash (-), with the balance being a postcode in the country concerned;\nd) four or more characters of which the first three correspond to an ISO 3166-1 country code followed by a dot (.), with the balance being an ISO 3166-2 country subdivision code in the country concerned;\ne) five upper case alphabetic characters corresponding to the UN/LOCODE of the area in, close to, or consisting of which, the location(s) or area(s) are situated;\nf) six upper case alphanumeric characters corresponding to a UPU IMPC code allocated in accordance with UPU standard S34;\ng) the concatenation, being not less than seven nor more than 25 characters in length, of:\n   ⎯ an issuer code allocated in accordance with UPU standards S31;\n   ⎯ a location code, consisting of characters drawn from the set {A-Z; 0-9} which accords with specifications of the issuer concerned.",
+  },
+  "18U": {
+    identifier: "18U",
+    format: "",
+    title: "Qualified UPU Location Code",
+    reg: /^(18U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Concatenation of:\n⎯ a location category drawn from UPU code list 139;\n⎯ a data identifier 17U UPU location code.",
+  },
+  "19U": {
+    identifier: "19U",
+    format: "",
+    title: "License Plate with Service Data and Location Code",
+    reg: /^(19U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "A compound data construct, compliant with the specification in UPU standard S25, which includes specification of:\n⎯ an ISO/IEC 15459-compliant item identifier;\n⎯ a data identifier 5U compliant specification of the service to be provided in respect of the item;\n⎯ a data identifier 17U compliant UPU location code or a data identifier 18U compliant qualified UPU location code.\nNote: For further details, please refer to UPU standard S25. The distinction between a simple UPU location code (DI 17U) and a qualified UPU location code (DI 18U) can be determined from the first character. If this is numeric, 18U applies; if it is alphabetic, 17U applies.",
+  },
+  // 20U-54U: Reserved for Assignment for UPU needs in collaboration with ASC MH10/SC 8/WG 2
+  "55U": {
+    identifier: "55U",
+    format: "",
+    title: "OCR Data Locator",
+    reg: /^(55U)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "",
+  },
+  // 56U-999U: Reserved for future assignment
 
   // ============================================================================
   // Category 22 (V): Party To The Transaction
