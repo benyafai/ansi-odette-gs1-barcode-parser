@@ -1,9 +1,11 @@
 import { type AIList } from "../types/ApplicationIdentifierType";
 
 export const Odette = <AIList>{
-  // Category 1 (A): Reserved
+  // ============================================================================
+  // // Category 1 (A): Reserved
   // A-999A: Reserved
 
+  // ============================================================================
   // Category 2 (B): Container Information
   B: {
     identifier: "B",
@@ -79,6 +81,7 @@ export const Odette = <AIList>{
   // TODO // 11B-55B
   // 56B-999B: Reserved for future assignment
 
+  // ============================================================================
   // Category 3: Field Continuation
   C: {
     identifier: "C",
@@ -124,6 +127,7 @@ export const Odette = <AIList>{
   },
   // 6C-999C: Reserved for future assignment
 
+  // ============================================================================
   // Category 4 (D): Date
   D: {
     identifier: "D",
@@ -330,6 +334,7 @@ export const Odette = <AIList>{
   },
   // 29D-999D: Reserved for future assignment
 
+  // ============================================================================
   // Category 5 (E): Environmental Factors
   E: {
     identifier: "E",
@@ -411,12 +416,15 @@ export const Odette = <AIList>{
   },
   // 14E-999E: Reserved for future assignment
 
+  // ============================================================================
   // Category 6 (F): Looping
   // TODO // Loop over the hierarchy!
 
+  // ============================================================================
   // Category 7 (G): Reserved
   // G-999G: Reserved
 
+  // ============================================================================
   // Category 8 (H): Human Resources
   H: {
     identifier: "H",
@@ -534,6 +542,7 @@ export const Odette = <AIList>{
   },
   // 27H-999H: Reserved for future assignment
 
+  // ============================================================================
   // Category 9 (I): Reserved
   I: {
     identifier: "I",
@@ -567,6 +576,7 @@ export const Odette = <AIList>{
   },
   // 6I-999I: Reserved - Not recommended for use due to similarity of "1" to "I".
 
+  // ============================================================================
   // Category 10 (J): License Plate
   J: {
     identifier: "J",
@@ -633,6 +643,7 @@ export const Odette = <AIList>{
   },
   // 9J-999J: Reserved for future assignment
 
+  // ============================================================================
   // Category 11 (K): Transaction Reference Used In Trading Relationships
   K: {
     identifier: "K",
@@ -819,6 +830,7 @@ export const Odette = <AIList>{
   },
   // 28K-999K: Reserved for future assignment
 
+  // ============================================================================
   // Category 12 (L): Location reference
   L: {
     identifier: "L",
@@ -994,6 +1006,7 @@ export const Odette = <AIList>{
   // TODO // Locations 27L-55L
   // 56L-999L: Reserved for future assignment
 
+  // ============================================================================
   // Category 13 (M): Reserved
   // M: Reserved
   // 1M-9M: Reserved
@@ -1034,6 +1047,7 @@ export const Odette = <AIList>{
   },
   // 15M-999M: Reserved for future assignment
 
+  // ============================================================================
   // Category 14 (N): Industry Assigned Codes
   N: {
     identifier: "N",
@@ -1122,9 +1136,11 @@ export const Odette = <AIList>{
   },
   // 13N-999N: Reserved for future assignment
 
+  // ============================================================================
   // Category 15 (O): Reserved
   // O-999O: Not recommended for use due to similarity of "0" (zero) to "O" (letter).
 
+  // ============================================================================
   // Category 16 (P): Item Information
   P: {
     identifier: "P",
@@ -1424,101 +1440,456 @@ export const Odette = <AIList>{
   },
   // 55P-999P: Reserved for future assignment
 
+  // ============================================================================
   // Category 17 (Q): Measurement
   Q: {
     identifier: "Q",
-    format: "a1+n..30",
+    format: "",
     title: "Quantity",
-    reg: /^(Q)([\x2E\x30-\x39]{1,30})/,
+    reg: /^(Q)([\x2E\x30-\x39]+)/,
     desc: "Quantity, Number of Pieces, or Amount (numeric only) (unit of measure and significance mutually defined.",
     overrideType: "number",
   },
-  // TODO // 1Q-31Q
+  "1Q": {
+    identifier: "1Q",
+    format: "",
+    title: "Theoretical Length/Weight",
+    reg: /^(1Q)([\x2E\x30-\x39]+)/,
+    desc: "Numeric only.",
+    overrideType: "number",
+  },
+  "2Q": {
+    identifier: "2Q",
+    format: "",
+    title: "Actual Weight",
+    reg: /^(2Q)([\x2E\x30-\x39]+)/,
+    desc: "Numeric only.",
+    overrideType: "number",
+  },
+  "3Q": {
+    identifier: "3Q",
+    format: "an2+an2",
+    title: "Unit of Measure",
+    reg: /^(3Q)([\x41-\x5A\x61-\x7A]{2})/,
+    desc: "As defined by the two character ANSI X12.3 Data Element Number 355 Unit of Measurement Code.",
+  },
+  "4Q": {
+    identifier: "4Q",
+    format: "",
+    title: "Gross Amount",
+    reg: /^(4Q)([\x2E\x30-\x39]+)/,
+    desc: "",
+    overrideType: "number",
+  },
+  "5Q": {
+    identifier: "5Q",
+    format: "",
+    title: "Net Amount",
+    reg: /^(5Q)([\x2E\x30-\x39]+)/,
+    desc: "",
+    overrideType: "number",
+  },
+  "6Q": {
+    identifier: "6Q",
+    format: "an2+n1..30+/+n1..30",
+    title: "Multiple Containers Comprising a Single Product",
+    reg: /^(6Q)([\x2E\x30-\x39]+\/[\x2E\x30-\x39]+)/,
+    desc: "Where Multiple Containers Comprise a Single Product (the contents of each container must be combined with the content of the other containers to constitute a single product) the Data Identifier “6Q” shall be used to link the various containers. The format # of # (“this is the nth piece of x pieces to define the product”) Presented in the format “n/x”, where the “/” (slash) is used as a delimiter between two values.",
+  },
+  "7Q": {
+    identifier: "7Q",
+    format: "an2+n1..8+an2",
+    title: "Quantity, Amount, or Number of Pieces",
+    reg: /^(7Q)([\x2E\x30-\x39]{1,8}[\x41-\x5A\x61-\x7A]{2})/,
+    desc: "In the format: Quantity followed by the two character ANSI X12.3 Data Element Number 355 Unit of Measurement Code",
+  },
+  "8Q": {
+    identifier: "8Q",
+    format: "an2+n4..6",
+    title: "Container Rated Weight",
+    reg: /^(8Q)([\x2E\x30-\x39]{4,6})/,
+    desc: "Manufacturer-assigned weight carrying capability of the container. Assigned at time of manufacture. Unit of measure is kg.",
+  },
+  "9Q": {
+    identifier: "9Q",
+    format: "",
+    title: "Piece Weight",
+    reg: /^(9Q)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Weight of a single item.",
+  },
+  // 10Q: Reserved
+  "11Q": {
+    identifier: "11Q",
+    format: "an3+n4..6",
+    title: "Tare Weight",
+    reg: /^(11Q)([\x2E\x30-\x39]{4,6})/,
+    desc: "Weight of an empty container. Container body weight. Manufacturer-assigned weight of the empty container. Assigned at time of manufacture. Unit of measure is kg (Tare weight).",
+  },
+  "12Q": {
+    identifier: "12Q",
+    format: "an3+n1..10+an3",
+    title: "Monetary Value",
+    reg: /^(12Q)([\x2E\x30-\x39]{1,10}[\x41-\x5A\x61-\x7A]{3})/,
+    desc: "Established by the Supplier in the format of: the value followed by an ISO 4217 data element code for representing unit of value of currencies and funds (e.g., 12Q2.50USD) (2.50 Monetary Value in USA Dollars) significance mutually defined.\nEntry Value;\nValue followed by an ISO 4217 data element code for representing unit of value of currencies and funds (e.g., 12Q2.50USD) (2.50 Monetary Value in USA Dollars)",
+  },
+  "13Q": {
+    identifier: "13Q",
+    format: "an3+n1..30+/+n1..30",
+    title: "# of # Pieces In Shipment",
+    reg: /^(13Q)([\x2E\x30-\x39]+\/[\x2E\x30-\x39]+)/,
+    desc: "# of # (“this is the nth piece of x pieces in this shipment”) Presented in the format “n/x”, where the “/” (slash) is used as a delimiter between two values. See Annex C.6.3 for further information.",
+  },
+  "14Q": {
+    identifier: "14Q",
+    format: "",
+    title: "Beginning Secondary Quantity.",
+    reg: /^(14Q)([\x2E\x30-\x39]+)/,
+    desc: "",
+  },
+  "15Q": {
+    identifier: "15Q",
+    format: "",
+    title: "Ending Secondary Quantity",
+    reg: /^(15Q)([\x2E\x30-\x39]+)/,
+    desc: "",
+  },
+  "16Q": {
+    identifier: "16Q",
+    format: "",
+    title: "Number Of Pieces in Van",
+    reg: /^(16Q)([\x2E\x30-\x39]+)/,
+    desc: "",
+  },
+  "17Q": {
+    identifier: "17Q",
+    format: "",
+    title: "Number Of Shipments in Van",
+    reg: /^(17Q)([\x2E\x30-\x39]+)/,
+    desc: "",
+  },
+  "18Q": {
+    identifier: "18Q",
+    format: "",
+    title: "Cube",
+    reg: /^(18Q)([\x30-\x39]+(?:CR|CF))/,
+    desc: "Cube expressed in cubic meters or cubic feet followed by the ANSI X12.3 data element number 355 unit of measure code (CR of CF). No implied decimal point.",
+  },
+  "19Q": {
+    identifier: "19Q",
+    format: "",
+    title: "Width",
+    reg: /^(19Q)([\x30-\x39]+(?:LC|LF))/,
+    desc: "Width expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure code (LC or LF). No implied decimal point.",
+  },
+  "20Q": {
+    identifier: "20Q",
+    format: "",
+    title: "Height",
+    reg: /^(20Q)([\x30-\x39]+(?:LC|LF))/,
+    desc: "Height expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure code (LC or LF). No implied decimal point.",
+  },
+  "21Q": {
+    identifier: "21Q",
+    format: "",
+    title: "Length",
+    reg: /^(21Q)([\x30-\x39]+(?:LC|LF))/,
+    desc: "Length expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure code (LC or LF). No implied decimal point.",
+  },
+  "22Q": {
+    identifier: "22Q",
+    format: "",
+    title: "Net Weight of Shipment",
+    reg: /^(21Q)([\x30-\x39]+(?:LB|KG))/,
+    desc: "Net Weight Of Shipment expressed in pounds or kilograms (kilos) followed by the ANSI X12.3 data element number 355 unit of measure (LB or KG). No implied decimal point.",
+  },
+  "23Q": {
+    identifier: "23Q",
+    format: "",
+    title: "Van Length",
+    reg: /^(23Q)([\x30-\x39]+(?:LC|LF))/,
+    desc: "Van Length expressed in linear meters or linear feet followed by the ANSI X12.3 data element number 355 unit of measure (LC or LF). No implied decimal point.",
+  },
+  "24Q": {
+    identifier: "24Q",
+    format: "",
+    title: "Inside Cube of Van",
+    reg: /^(24Q)([\x30-\x39]+(?:CR|CF))/,
+    desc: "Inside Cube of a Van expressed in cubic meters or cubic feet followed by the ANSI X12.3 data element number 355 of unit measure code (CR or CF). No implied decimal point.",
+  },
+  "25Q": {
+    identifier: "25Q",
+    format: "",
+    title: "Net Explosive Weight",
+    reg: /^(25Q)([\x30-\x39]+)/,
+    desc: "Net Explosive Weight (a computed value of explosive equivalent expressed in pound of TNT). The measure of NEW is used internationally for explosive safety quantity distance arc computations. No implied decimal point.",
+  },
+  "26Q": {
+    identifier: "26Q",
+    format: "",
+    title: "Packaging Level",
+    reg: /^(26Q)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Packaging Level, specifying the hierarchical level of packaging in accordance with HIBC (Health Industry Bar Code) specifications.",
+  },
+  "27Q": {
+    identifier: "27Q",
+    format: "an3+an1..20 ",
+    title: "Single Product Price Value, Net",
+    reg: /^(27Q)([\x2E\x30-\x39]{1,20})/,
+    desc: "Single Product Price Value, Net, “.” (dot) used as decimal point (e.g., 27Q1000.5 for the price value of 1000.50)\nStructure:      an3+an1…20\n                <DI><price value>\nCharacter set:  0 to 9, dot (ISO 646 ASCII value decimal 46, hexadecimal 2E).\nExample of encoding using a net price value of 1000: 27Q1000\nExample of encoding using a net price value of 1000.50: 27Q1000.5\nNOTE: If currency is required it can be taken from another data element used in same code, e.g., 12Q.",
+    overrideType: "currency",
+  },
+  "28Q": {
+    identifier: "28Q",
+    format: "an3+an1..10",
+    title: "Single Price Charge Value For Postage And Packaging",
+    reg: /^(28Q)([\x2C\x2E\x30-\x39]{1,10})/,
+    desc: "Single Price Charge Value For Postage And Packaging, “.” (dot) represents the position of a comma (e.g., 28Q100.50 for the value of 100,50)\nStructure:      an3+an1…10\n                <DI><price value>\nCharacter set:  0 to 9, dot\nExample of encoding using postage & packing value of 100: 28Q100\nExample of encoding using postage & packing value of 100,50: 28Q100.50\nNOTE: If currency is required it can be taken from another data element used in same code, e.g., 12Q.",
+    overrideType: "currency",
+  },
+  "29Q": {
+    identifier: "29Q",
+    format: "an3+an1..6",
+    title: "Discount Percentage",
+    reg: /^(29Q)([\x2C\x2E\x30-\x39]{1,6})/,
+    desc: "Discount Percentage, “.” (dot) represents the position of a comma (e.g., 29Q8.5 for a discount value of 8,5%)\nStructure:      an3+n1…6 (12.456)\n                <DI><discount percentage (%)>\nCharacter set:  0 to 9, dot\nExample of encoding using discount percentage of 10%: 29Q10\nExample of encoding using discount percentage of 8,5%: 29Q8.5",
+  },
+  "30Q": {
+    identifier: "30Q",
+    format: "an3+an1..5",
+    title: "VAT Percentage",
+    reg: /^(30Q)([\x2C\x2E\x30-\x39]{1,5})/,
+    desc: "VAT Percentage, “.” (dot) represents the position of a comma (e.g., 30Q8.5 for the VAT value of 8,5%)\nStructure:      an3+an1…5 (12.45)\n                <DI><VAT percentage (%)>\nCharacter set:  0 to 9, dot\nExample of encoding using VAT percentage of 19%: 30Q19\nExample of encoding using VAT percentage of 8,5%: 30Q8.5",
+  },
+  "31Q": {
+    identifier: "31Q",
+    format: "an3+an3",
+    title: "Currency (ISO 4217 Code)",
+    reg: /^(31Q)([\x30-\x39\x41-\x5A\x61-\x7A]{3})/,
+    desc: "Currency, ISO 4217 currency code.\nStructure:      an3+an3\n                <DI><Currency, e.g., EUR>\nCharacter set:  A-Z, 0 to 9\nExample of encoding using ISO alphabetic code of US Dollar: 31QUSD\nExample of encoding using ISO alphabetic code of EURO: 31QEUR\nExample of encoding using ISO numeric code of EURO: 31Q978",
+  },
   // 32Q-999Q: Reserved for future assignment
 
-  // TODO // Category 18 (R): Miscellaneous
+  // ============================================================================
+  // Category 18 (R): Miscellaneous
+  // R: Reserved
+  "1R": {
+    identifier: "1R",
+    format: "",
+    title: "Return Authorization Code (RMA) (Supplier)",
+    reg: /^(1R)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Assigned by the Supplier.",
+  },
+  "2R": {
+    identifier: "2R",
+    format: "",
+    title: "Return Code (Customer)",
+    reg: /^(2R)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Assigned by the Customer.",
+  },
+  // 3R: Reserved
+  "4R": {
+    identifier: "4R",
+    format: "",
+    title: "U.S. Department of Defense Identification Code (DoDIC)",
+    reg: /^(4R)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "",
+  },
+  "5R": {
+    identifier: "5R",
+    format: "",
+    title: "Data by CIN Holder (IAC)",
+    reg: /^(5R)(.+)/,
+    desc: "Data in the format and using semantics defined by the holder of a Company Identification Number (CIN) that has been issued by an Issuing Agency Code (IAC) in accordance with ISO/IEC 15459, defined as a sequence of concatenated data elements: IAC, followed by CIN, followed by the separator character “:” (colon) followed by the data in the format and using semantics as defined by the CIN holder.\nNOTE: Only the data syntax rules (if any) as provided by the declared IAC+CIN within each DI “5R” data stream shall be applied to the data following DI 5R+IAC+CIN.4.",
+  },
+  "6R": {
+    identifier: "6R",
+    format: "",
+    title: "",
+    reg: /^(6R)(.+)/,
+    desc: "ISO/IEC 20248 digital signature data construct. If the underlying data carrier encoding is 7 bits, then only the ISO/IEC 20248 raw format may be used.\nExample with an URL format:\n<6R><https://20248.sigvr.it/?Oo586eJAMEYCIQCf31EqIJMLGclBpHLlRgBdO>\nExample with a raw format:\n<6R><Oo586eJAMEYCIQCf31EqIJMLGclBpHLlRgBdO>\nAn ISO/IEC 20248 data structure contains a digital signature which is used to verify the specified data elements of the message of data elements. The value of 6R, as the first parameter, and the data elements to be verified (stripped from all non-printable characters), as the second parameter, is passed to the ISO/IEC 20248 DecoderVerifier - which will return the verification result: ACCEPT, REJECT or ERROR(error code), and the JSON object of decoded ISO/IEC 20248 additional fields. The ISO/IEC 20248 data structure may contain additional fields and instructions to decode and verify one or more messages of data elements. These instructions will be processed by the ISO/IEC 20248 DecoderVerifier.",
+  },
+  "7R": {
+    identifier: "7R",
+    format: "an2+an1..3",
+    title: "ASFIS Species Code",
+    reg: /^(7R)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,3})/,
+    desc: "Aquatic Sciences and Fisheries Information System (ASFIS) ‘Inter-agency 3-alpha species code’, maintained by the Food and Agriculture Organization of the United Nations (www.fao.org, then search for “ASFIS”).\nExamples:\n7RMUC = Mud carp\n7RPCD = Australian freshwater herring\n7RWSH = Great white shark",
+  },
+  "8R": {
+    identifier: "8R",
+    format: "an2+an1..10",
+    title: "ISSCFG Gear Code",
+    reg: /^(8R)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,10})/,
+    desc: "Food and Agricultural Organization (FAO) International Standard Classification of Fishing Gears (ISSCFG) code. (www.fao.org)\nAll characters of the GS1 General Specification-defined sub-set of ISO/IEC 646 are allowed.\nExamples:\n8R02.1.0 = Beach seines\n8R03.1.5 = Shrimp trawls\n8R05.1.0 = Portable lift net",
+  },
+  "9R": {
+    identifier: "9R",
+    format: "an2+an2",
+    title: "Fish and Seafood Production Method",
+    reg: /^(9R)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{2})/,
+    desc: "Production method for fish and seafood as specified by the Fisheries and Aquaculture Department of the Food and Agricultural Organization (FAO) of the United Nations, according to EU Regulation 1379/2013. (www.fao.org).\nAll characters of the GS1 General Specification-defined sub-set of ISO/IEC 646 are allowed.\nExamples:\n9R01 = Caught at sea\n9R02 = Caught in fresh water\n9R03 = Farmed",
+  },
+  // 10RQ-999R: Reserved for future assignment
 
+  // ============================================================================
   // Category 19 (S): Traceability Number For An Entity
   S: {
     identifier: "S",
-    format: "a1+an..90",
+    format: "",
     title: "Serial Number",
-    reg: /^(S)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,90})/,
+    reg: /^(S)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Serial Number or Code Assigned by the Supplier to an Entity for its Lifetime, (e.g., computer serial number, traceability number, contract tool identification).",
   },
   // TODO // 1S-97S
   // 98S-999S: Reserved for future assignment
 
+  // ============================================================================
   // Category 20 (T): Traceability Number For Groups Of Entities
   T: {
     identifier: "T",
-    format: "a1+an..90",
+    format: "",
     title: "Serial Number",
-    reg: /^(T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,90})/,
+    reg: /^(T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Traceability Number assigned by the Customer to identify/trace a unique group of entities (e.g., lot, batch, heat).",
   },
   "1T": {
     identifier: "1T",
-    format: "an2+an..90",
+    format: "",
     title: "Traceability Number",
-    reg: /^(1T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,90})/,
+    reg: /^(1T)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Traceability Number assigned by the Supplier to identify/trace a unique group of entities (e.g., lot, batch, heat).",
   },
   // TODO // 2T-34T
   // 35T-999T: Reserved for future assignment
 
+  // ============================================================================
   // TODO // Category 21 (U): UPU/MH 10/SC8 Agreed Upon Codes
 
+  // ============================================================================
   // Category 22 (V): Party To The Transaction
   V: {
     identifier: "V",
-    format: "a1+an..90",
+    format: "",
     title: "Supplier Code",
-    reg: /^(V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,90})/,
+    reg: /^(V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Supplier Code Assigned by Customer",
   },
   "1V": {
     identifier: "1V",
-    format: "an2+an..90",
+    format: "",
     title: "Supplier Code",
-    reg: /^(1V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,90})/,
+    reg: /^(1V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Supplier Code Assigned by Supplier",
   },
   "2V": {
     identifier: "2V",
-    format: "an2+an..90",
+    format: "",
     title: "Supplier Code",
-    reg: /^(2V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,90})/,
+    reg: /^(2V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "U.P.C. Company Prefix.",
   },
   "3V": {
     identifier: "3V",
-    format: "an2+an..90",
+    format: "",
     title: "Supplier Code",
-    reg: /^(3V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,90})/,
+    reg: /^(3V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "GS1 Company Prefix.",
   },
   // TODO // 4V-24V
   // 25V-999V: Reserved for future assignment
 
-  // TODO // Category 23 (W): Activity Reference
-  // TODO // W-12W
+  // ============================================================================
+  // Category 23 (W): Activity Reference
+  W: {
+    identifier: "W",
+    format: "",
+    title: "Work Order Number",
+    reg: /^(W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "(e.g., “Production Paper”) (internally assigned).",
+  },
+  "1W": {
+    identifier: "1W",
+    format: "",
+    title: "Operation Sequence Number",
+    reg: /^(1W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "A number that defines the order of a particular operation in a series of operations, generally in a manufacturing or assembly process.",
+  },
+  "2W": {
+    identifier: "2W",
+    format: "",
+    title: "Operation Code/Work Code",
+    reg: /^(2W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "The type of work to be performed (internally assigned or mutually defined).",
+  },
+  "3W": {
+    identifier: "3W",
+    format: "",
+    title: "Combined Work Order Number and Operation Sequence Number",
+    reg: /^(3W)([\x2E\x30-\x39]+\+[\x2E\x30-\x39]+)/,
+    desc: "in the format nn...n+nn...n where a plus symbol (+) is used as a delimiter between the Work Order Number and the Operation Sequence Number.",
+  },
+  "4W": {
+    identifier: "4W",
+    format: "",
+    title: "Status Code",
+    reg: /^(4W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "(internally assigned or mutually defined).",
+  },
+  "5W": {
+    identifier: "5W",
+    format: "",
+    title: "Work Unit Code",
+    reg: /^(5W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Identifies system, subsystem, assembly, component etc. on which maintenance is performed.",
+  },
+  "6W": {
+    identifier: "6W",
+    format: "",
+    title: "Nomenclature",
+    reg: /^(6W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "(internally assigned or mutually defined).",
+  },
+  // 7W-9W: Reserved
+  "10W": {
+    identifier: "10W",
+    format: "",
+    title: "Form Control Number",
+    reg: /^(10W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Preprinted control number on forms.",
+  },
+  "11W": {
+    identifier: "11W",
+    format: "",
+    title: "Quality Assurance Inspector",
+    reg: /^(11W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Last Name.",
+  },
+  "12W": {
+    identifier: "12W",
+    format: "",
+    title: "Telephone Number of Person/Activity Completing the Form",
+    reg: /^(12W)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Expressed in the format (country code) city or area code plus local number i.e. (1) 319 555 1212.",
+  },
   // 13W-999W: Reserved for future assignment
 
+  // ============================================================================
   // Category 24 (X): Reserved
   // X-999X: Reserved
 
+  // ============================================================================
   // Category 25 (Y): Internal Applications
   xxY: {
     identifier: "xxY",
     format: "",
-    title: "Internal Applications",
+    title: "Internal Application",
     reg: /^(\d{1,3}Y)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Never to appear on item/document which leaves a closed system environment",
   },
   // Y-999Y: Never to appear on item/document which leaves a closed system environment
 
-  // TODO // Category 26 (Z): Mutually Defined
+  // ============================================================================
+  // Category 26 (Z): Mutually Defined
   Z: {
     identifier: "Z",
     format: "",
