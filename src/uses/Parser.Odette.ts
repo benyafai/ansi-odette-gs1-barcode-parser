@@ -573,6 +573,43 @@ export const Odette = <AIList>{
   // ============================================================================
   // Category 6 (F): Looping
   // TODO // Loop over the hierarchy!
+  F: {
+    identifier: "F",
+    format: "",
+    title: "Looping Header",
+    reg: /^(F)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Looping Header as defined as Section VI of ANSI MH10.8.2",
+  },
+  "1F": {
+    identifier: "1F",
+    format: "",
+    title: "Parent ID",
+    reg: /^(1F)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "My “parent” is . . . Unique identifier followed by a Data Identifier and associated data (for use with returnable packaging – See Annex L). This Data Identifier must immediately follow the field (constructed of a Data Identifier, data and a group separator) with which it is associated.",
+  },
+  // 2F: Reserved (prior use)
+  "3F": {
+    identifier: "3F",
+    format: "",
+    title: "Child Information",
+    reg: /^(3F)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "I have ______ children . . . (for use with returnable packaging, e.g.; 3F10, for ten children – See Annex L). This Data Identifier must immediately follow the field (constructed of a Data Identifier, data and a group separator) with which it is associated.",
+  },
+  "4F": {
+    identifier: "4F",
+    format: "",
+    title: "Logical Assignment of a Page of Information",
+    reg: /^(4F)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "Logical Assignment of a Page of Information within a group of pages that are spread across several data carriers, structured as a sequence of up to three (3) concatenated data elements, separated by a slash ( / ) :\nPage number (required), followed by page count (optional, required for the last page), followed by an alphanumeric group ID (optional; if used then required for all pages and structured in accordance with ISO/IEC 15459-3 as a sequence of 3 data elements: Issuing Agency Code, followed by the Company Identification Number, followed by an alphanumeric code unique within the issuer’s domain).\nTrailing slashes are optional.",
+  },
+  "5F": {
+    identifier: "5F",
+    format: "",
+    title: "Child Information (Returnable packaging)",
+    reg: /^(5F)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "I have ______ children and they are . . . (for use with returnable packaging – See Annex L) This Data Identifier must immediately follow the field (constructed of a Data Identifier, data and a group separator) with which it is associated.",
+  },
+  // 6F-999F: Reserved for future assignment
 
   // ============================================================================
   // Category 7 (G): Reserved
