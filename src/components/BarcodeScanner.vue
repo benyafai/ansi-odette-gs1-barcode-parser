@@ -58,6 +58,9 @@ export default defineComponent({
         this.parsedBarcode = BarcodeParser(decodedText, Odette)
       } else if (new RegExp(/^\]d2.*/).test(decodedText)) {
         this.parsedBarcode = BarcodeParser(decodedText, GS1)
+      } else {
+        // Use Odette as default
+        this.parsedBarcode = BarcodeParser(decodedText, Odette)
       }
       // Render our non-human-readable chacters for actual humans to see!
       this.formattedBarcode = BarcodeFormatter(decodedText)
