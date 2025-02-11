@@ -28,7 +28,7 @@ export const BarcodeParser = (
             result[ai].value = reg[2];
             // Overrides: Do we need to override our value type?
             if (IdentifierType.overrideType == "number") {
-              result[ai].value = parseInt(reg[2]);
+              result[ai].value = parseFloat(reg[2]);
             }
           }
         }
