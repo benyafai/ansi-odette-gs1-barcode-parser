@@ -30,6 +30,9 @@ export const BarcodeParser = (
             if (IdentifierType.overrideType == "number") {
               result[ai].value = parseFloat(reg[2]);
             }
+            if (IdentifierType.overrideType == "currency") {
+              result[ai].value = parseFloat(reg[2]).toFixed(2);
+            }
           }
         }
       }
