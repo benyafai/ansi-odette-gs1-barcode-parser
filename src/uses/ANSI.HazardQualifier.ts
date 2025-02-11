@@ -1,0 +1,16 @@
+export const ANSIHazardQualifier: { [key: string]: string } = {
+  "4": "46 Level DOT Code",
+  "6": "Airline Tariff 6D",
+  "9": "Title 49, Code of Federal Regulations (CFR)",
+  A: "International Civil Aviation Organization (ICAO) Code",
+  B: "Uniform Fire Code (UFC)",
+  C: "Storage Compatibility Group",
+  D: "Hazardous Material ID, DOT",
+  E: "Endorsement",
+  F: "Air Force Joint Manual 24-204",
+  I: "Intergovernmental Maritime Organization (IMO)",
+  R: "Bureau of Explosives (BOE) 6000 Tariff",
+  T: "International Air Transport Association Dangerous Code List",
+  X: "Hazardous Class or Division",
+  U: "United Nations",
+};
