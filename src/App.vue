@@ -1,4 +1,5 @@
 <template>
+  <h1>Odette (ANSI) Barcode Parser</h1>
   <BarcodeScanner />
 </template>
 
