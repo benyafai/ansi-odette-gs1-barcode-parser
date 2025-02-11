@@ -5,6 +5,7 @@
       <div id="qr-code-full-region"></div>
     </div>
     <div>
+      <h2 v-if="formattedBarcode && Object.keys(parsedBarcode).length <= 0" v-html="formattedBarcode" style="grid-column: span 2;"></h2>
       <template v-for="(ai) in parsedBarcode" :key="ai.identifier">
         <template v-if="ai.value">
           <h2>{{ ai.value }}</h2>
