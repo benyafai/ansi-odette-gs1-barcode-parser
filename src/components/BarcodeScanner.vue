@@ -1,22 +1,20 @@
 <template>
-  <div id="parse">
-    <p v-html="formattedBarcode" style="grid-column: span 2;"></p>
-    <div>
-      <div id="qr-code-full-region"></div>
-    </div>
-    <div>
-      <h2 v-if="formattedBarcode && Object.keys(parsedBarcode).length <= 0" v-html="formattedBarcode" style="grid-column: span 2;"></h2>
-      <template v-for="(ai) in parsedBarcode" :key="ai.identifier">
-        <template v-if="ai.value">
-          <h2>{{ ai.value }}</h2>
-          <p v-if="ai.processed">{{ ai.processed }}</p>
-          <details>
-            <summary><b>{{ '[' + ai.identifier + '] ' + ai.title }}</b></summary>
-            <small>{{ ai.desc }}</small>
-          </details>
-        </template>
+  <p v-html="formattedBarcode" style="grid-column: span 2; word-wrap: break-word;"></p>
+  <div id="qr-code">
+    <div id="qr-code-full-region"></div>
+  </div>
+  <div id="result">
+    <h2 v-if="formattedBarcode && Object.keys(parsedBarcode).length <= 0" v-html="formattedBarcode" style="grid-column: span 2;"></h2>
+    <template v-for="(ai) in parsedBarcode" :key="ai.identifier">
+      <template v-if="ai.value">
+        <h2>{{ ai.value }}</h2>
+        <p v-if="ai.processed">{{ ai.processed }}</p>
+        <details>
+          <summary><b>{{ '[' + ai.identifier + '] ' + ai.title }}</b></summary>
+          <small>{{ ai.desc }}</small>
+        </details>
       </template>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -69,11 +67,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-  div#parse {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-gap: 1em;
-  }
-</style>

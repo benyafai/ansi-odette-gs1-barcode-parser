@@ -43,7 +43,7 @@ p {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: clamp(1.2em, 4vw, 3.2em);
   line-height: 1.1;
 }
 
@@ -69,13 +69,23 @@ button:focus-visible {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  width: 100vw;
 }
 small {
   white-space: pre-wrap;
 }
 summary {
   cursor: pointer;
+}
+#qr-code {
+  position: fixed;
+  bottom: 0;
+  right: 2rem;
+  width: 260px;
+  background-color: #242424;
+}
+#result {
+  padding-block-end: 350px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -88,5 +98,8 @@ summary {
   }
   button {
     background-color: #f9f9f9;
+  }
+  #qr-code {
+    background-color: #ffffff;
   }
 }
