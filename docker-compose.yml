@@ -15,7 +15,7 @@ services:
     networks:
       - web
     env_file:
-      - .env
+      - stack.env
 networks:
   web:
     external: true
