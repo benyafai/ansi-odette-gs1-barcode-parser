@@ -5,7 +5,7 @@ import { ANSIHazardQualifier } from "./ANSI.HazardQualifier";
 
 export const BarcodeParser = (
   barcode: string,
-  ApplicationIdentifiers: AIList
+  ApplicationIdentifiers: AIList,
 ) => {
   let barcodeData = barcode
     .replace(/^\[\)>\x1e06\x1d/, "") // Strip Odette Header
@@ -42,18 +42,18 @@ export const BarcodeParser = (
                   rawDate.length == 8
                     ? rawDate.slice(0, 4)
                     : new Date().getFullYear().toString().slice(0, 2) +
-                        rawDate.slice(0, 2)
+                        rawDate.slice(0, 2),
                 ),
                 parseInt(
                   rawDate.length == 8
                     ? rawDate.slice(4, 6)
-                    : rawDate.slice(2, 4)
+                    : rawDate.slice(2, 4),
                 ) - 1,
                 parseInt(
                   rawDate.length == 8
                     ? rawDate.slice(6, 8)
-                    : rawDate.slice(4, 6)
-                )
+                    : rawDate.slice(4, 6),
+                ),
               );
               // console.log(Date.UTC(89, 0, 25));
               result[ai].processed =
@@ -70,7 +70,7 @@ export const BarcodeParser = (
             }
           }
         }
-      }
+      },
     );
   });
   return result;
