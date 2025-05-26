@@ -48,13 +48,6 @@ export default defineComponent({
         formattedBarcode: "",
     }),
     mounted() {
-        // this.onScanSuccess('[)>061YBEN3YYAFAI22YHELLO765YWORLDQ0002014MYAFAI10ZPART77ZPART47ZPACK')
-        // this.onScanSuccess('[)>06PHK83 03666 AA14K567+87656718LABCDEF1T4082822BKLT6429D24110612117H44 145 536 300022KHELLO WORLD9H1234567898765HABCDEF+JHZPART3ZPART10ZPART77ZPART')
-        // this.onScanSuccess('[)>06PHK83 03666 AA1T4082822BKLT6429D241106121112E11BBBBBB999.9UUZPART')
-        // this.onScanSuccess('[)>0624B1234555LCV230WEGBD241106121112E11BBBBBB999.9UUZPART')
-        // this.onScanSuccess('[)>0627Q100.328Q100.329Q100.330Q100.331QGBP4Q12.4550PHK83 03666 AA+311NHello world!.1T408282227D20241112202412015BHELLO8D202501261732146BKLT642923D20241106ZPART')
-        // this.onScanSuccess(']d200123456789123456789')
-        // this.onScanSuccess('00123456789123456789')
         const config = {
             fps: this.fps ? this.fps : 10,
             qrbox: this.qrbox ? this.qrbox : 250,
