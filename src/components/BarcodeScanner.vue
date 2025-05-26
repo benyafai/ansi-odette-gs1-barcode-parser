@@ -66,13 +66,12 @@ export default defineComponent({
             this.parsedBarcode = <AIList>{};
             this.formattedBarcode = "";
             // Identify format and parse barcode
-            if (new RegExp(/^\[\)>\x1e06\x1d.*\x1e\x04$/).test(decodedText)) {
-                this.parsedBarcode = BarcodeParser(decodedText, Odette);
-            } else if (new RegExp(/^\]d2.*/).test(decodedText)) {
-                this.parsedBarcode = BarcodeParser(decodedText, GS1);
-            } else {
-                // Use Odette as default
-                this.parsedBarcode = BarcodeParser(decodedText, Odette);
+            let odetteResults = BarcodeParser(decodedText, Odette);
+            let gs1Results = BarcodeParser(decodedText, GS1);
+            if (Object.keys(odetteResults).length > 0) {
+                this.parsedBarcode = odetteResults;
+            } else if (Object.keys(gs1Results).length > 0) {
+                this.parsedBarcode = gs1Results;
             }
             // Render our non-human-readable chacters for actual humans to see!
             this.formattedBarcode = BarcodeFormatter(decodedText);
