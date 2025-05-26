@@ -2,6 +2,11 @@ import { type AIList, type AIType } from "../types/ApplicationIdentifierType";
 import { ANSIDateQualifier } from "./ANSI.DateQualifier";
 import { ANSIUnitOfMeasure } from "./ANSI.UnitOfMeasure";
 import { ANSIHazardQualifier } from "./ANSI.HazardQualifier";
+import {
+  ISO3166CountryCodeNumeric,
+  ISO3166CountryCodeAlpha3,
+  ISO3166CountryCodeAlpha2,
+} from "./ISO.3166";
 
 export const BarcodeParser = (
   barcode: string,
@@ -67,6 +72,15 @@ export const BarcodeParser = (
             if (IdentifierType.overrideType == "ANSIUnitOfMeasure") {
               result[ai].processed =
                 value.slice(0, -2) + " " + ANSIUnitOfMeasure[value.slice(-2)];
+            }
+            if (IdentifierType.overrideType == "ISO3166CountryCode") {
+              if (!isNaN(parseInt(value)) && value.length == 3) {
+                result[ai].processed = ISO3166CountryCodeNumeric[value];
+              } else if (value.length == 3) {
+                result[ai].processed = ISO3166CountryCodeAlpha3[value];
+              } else if (value.length == 2) {
+                result[ai].processed = ISO3166CountryCodeAlpha2[value];
+              }
             }
           }
         }

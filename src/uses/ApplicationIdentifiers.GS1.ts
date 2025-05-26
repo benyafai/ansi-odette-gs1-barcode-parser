@@ -2877,6 +2877,7 @@ export const GS1 = <AIList>{
     title: "SHIP TO POST",
     reg: /^(421)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,9})/,
     desc: "Ship to / Deliver to postal code with ISO country code",
+    overrideType: "ISO3166CountryCode",
   },
   "422": {
     identifier: "422",
@@ -2884,6 +2885,7 @@ export const GS1 = <AIList>{
     title: "ORIGIN",
     reg: /^(422)(\d{3})/,
     desc: "Country of origin of a trade item",
+    overrideType: "ISO3166CountryCode",
   },
   "423": {
     identifier: "423",
@@ -2891,6 +2893,7 @@ export const GS1 = <AIList>{
     title: "COUNTRY - INITIAL PROCESS",
     reg: /^(423)(\d{3})(\d{0,12})/,
     desc: "Country of initial processing",
+    overrideType: "ISO3166CountryCode",
   },
   "424": {
     identifier: "424",
@@ -2898,6 +2901,7 @@ export const GS1 = <AIList>{
     title: "COUNTRY - PROCESS",
     reg: /^(424)(\d{3})/,
     desc: "Country of processing",
+    overrideType: "ISO3166CountryCode",
   },
   "425": {
     identifier: "425",
@@ -2905,6 +2909,7 @@ export const GS1 = <AIList>{
     title: "COUNTRY - DISASSEMBLY",
     reg: /^(425)(\d{3})(\d{0,12})/,
     desc: "Country of disassembly",
+    overrideType: "ISO3166CountryCode",
   },
   "426": {
     identifier: "426",
@@ -2912,6 +2917,7 @@ export const GS1 = <AIList>{
     title: "COUNTRY - FULL PROCESS",
     reg: /^(426)(\d{3})/,
     desc: "Country covering full process chain",
+    overrideType: "ISO3166CountryCode",
   },
   "427": {
     identifier: "427",
@@ -2919,6 +2925,7 @@ export const GS1 = <AIList>{
     title: "ORIGIN SUBDIVISION",
     reg: /^(427)([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,3})/,
     desc: "Country subdivision Of origin",
+    overrideType: "ISO3166CountryCode",
   },
   "4300": {
     identifier: "4300",
@@ -2975,6 +2982,7 @@ export const GS1 = <AIList>{
     title: "SHIP TO COUNTRY",
     reg: /^(4307)([A-Z]{2})/,
     desc: "Ship-to / Deliver-to country code",
+    overrideType: "ISO3166CountryCode",
   },
   "4308": {
     identifier: "4308",
@@ -3045,6 +3053,7 @@ export const GS1 = <AIList>{
     title: "RTN TO COUNTRY",
     reg: /^(4317)([A-Z]{2})/,
     desc: "Return-to country code",
+    overrideType: "ISO3166CountryCode",
   },
   "4318": {
     identifier: "4318",
@@ -3220,6 +3229,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 0",
     reg: /^(7030)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7031": {
     identifier: "7031",
@@ -3227,6 +3237,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 1",
     reg: /^(7031)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7032": {
     identifier: "7032",
@@ -3234,6 +3245,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 2",
     reg: /^(7032)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7033": {
     identifier: "7033",
@@ -3241,6 +3253,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 3",
     reg: /^(7033)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7034": {
     identifier: "7034",
@@ -3248,6 +3261,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 4",
     reg: /^(7034)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7035": {
     identifier: "7035",
@@ -3255,6 +3269,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 5",
     reg: /^(7035)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7036": {
     identifier: "7036",
@@ -3262,6 +3277,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 6",
     reg: /^(7036)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7037": {
     identifier: "7037",
@@ -3269,6 +3285,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 7",
     reg: /^(7037)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7038": {
     identifier: "7038",
@@ -3276,6 +3293,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 8",
     reg: /^(7038)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7039": {
     identifier: "7039",
@@ -3283,6 +3301,7 @@ export const GS1 = <AIList>{
     title: "PROCESSOR # 9",
     reg: /^(7039)(\d{3})([\x21-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{0,27})/,
     desc: "Number of processor with ISO Country Code",
+    overrideType: "ISO3166CountryCode",
   },
   "7040": {
     identifier: "7040",
