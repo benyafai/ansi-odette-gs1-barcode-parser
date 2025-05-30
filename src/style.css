@@ -104,7 +104,7 @@ button:focus-visible {
 #app {
     max-width: 1280px;
     margin: 0 auto;
-    width: 95vw;
+    width: 90vw;
 }
 small {
     white-space: pre-wrap;
@@ -120,7 +120,48 @@ summary {
     background-color: #242424;
 }
 #result {
-    padding-block-end: 350px;
+    padding-block-end: 15em;
+}
+
+.paste {
+    filter: grayscale(100%);
+    position: fixed;
+    bottom: 1em;
+    left: 0;
+    width: 5vw;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    #app {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 4em auto auto auto;
+        grid-template-areas:
+            "title"
+            "formatted"
+            "result"
+            "qr-code";
+        height: 100vh;
+    }
+    h1 {
+        grid-area: title;
+    }
+    #qr-code {
+        grid-area: qr-code;
+        position: unset;
+        width: unset;
+    }
+    #qr-code #qr-code-full-region {
+        display: grid;
+        grid-template-columns: 1px 1fr 1fr;
+        grid-template-rows: auto;
+    }
+    #result {
+        grid-area: result;
+        overflow: scroll;
+        padding-block-end: 4em;
+    }
 }
 
 @media (prefers-color-scheme: light) {

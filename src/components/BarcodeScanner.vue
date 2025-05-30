@@ -1,7 +1,7 @@
 <template>
   <p
     v-html="formattedBarcode"
-    style="grid-column: span 2; word-wrap: break-word"
+    style="word-wrap: break-word; overflow: scroll"
   ></p>
   <div id="qr-code">
     <div id="qr-code-full-region"></div>
@@ -10,7 +10,6 @@
     <h2
       v-if="formattedBarcode && Object.keys(parsedBarcode).length <= 0"
       v-html="formattedBarcode"
-      style="grid-column: span 2"
     ></h2>
     <template v-for="ai in parsedBarcode" :key="ai.identifier">
       <template v-if="ai.value">
