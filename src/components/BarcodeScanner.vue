@@ -79,6 +79,11 @@ export default defineComponent({
       this.formattedBarcode = BarcodeFormatter(decodedText);
     },
     watchKeys(ev: KeyboardEvent) {
+      if (ev.code == "Escape") {
+        this.parsedBarcode = {};
+        this.formattedBarcode = "";
+        return;
+      }
       let scannedBarcode = ScannerOrKeyboardInput(ev);
       if (ev.code == "Enter") {
         this.onScanSuccess(scannedBarcode);
