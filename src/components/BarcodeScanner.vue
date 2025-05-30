@@ -24,6 +24,7 @@
       </template>
     </template>
   </div>
+  <a @click="paste()" class="paste">📋</a>
 </template>
 
 <script lang="ts">
@@ -87,6 +88,10 @@ export default defineComponent({
       if (ev.code == "Enter") {
         this.onScanSuccess(scannedBarcode);
       }
+    },
+    async paste() {
+      let clipboard = await navigator.clipboard.readText();
+      this.onScanSuccess(clipboard);
     },
   },
 });
