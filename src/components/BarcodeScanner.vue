@@ -35,6 +35,7 @@ import { BarcodeParser } from "../uses/BarcodeParser";
 import { BarcodeFormatter } from "../uses/BarcodeFormatter";
 import { Odette } from "../uses/ApplicationIdentifiers.Odette";
 import { GS1 } from "../uses/ApplicationIdentifiers.GS1";
+import { ScannerOrKeyboardInput } from "../uses/ScannerOrKeyboardInput";
 
 export default defineComponent({
   name: "Barcodes",
@@ -48,6 +49,7 @@ export default defineComponent({
     formattedBarcode: "",
   }),
   mounted() {
+    window.addEventListener("keydown", this.watchKeys);
     const config = {
       fps: this.fps ? this.fps : 10,
       qrbox: this.qrbox ? this.qrbox : 250,
@@ -63,6 +65,7 @@ export default defineComponent({
   methods: {
     async onScanSuccess(decodedText: string) {
       // reset results
+      this.parsedBarcode = {};
       this.formattedBarcode = "";
       // Identify format and parse barcode
       let odetteResults = await BarcodeParser(decodedText, Odette);
@@ -74,6 +77,12 @@ export default defineComponent({
       }
       // Render our non-human-readable chacters for actual humans to see!
       this.formattedBarcode = BarcodeFormatter(decodedText);
+    },
+    watchKeys(ev: KeyboardEvent) {
+      let scannedBarcode = ScannerOrKeyboardInput(ev);
+      if (ev.code == "Enter") {
+        this.onScanSuccess(scannedBarcode);
+      }
     },
   },
 });
