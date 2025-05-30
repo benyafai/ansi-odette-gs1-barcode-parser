@@ -20,7 +20,9 @@ const ignoreCode = [
   "Tab",
   "CapsLock",
   "NumLock",
+  "Clear",
   "Backspace",
+  "Escape",
 ];
 
 const parseAltCode = (altString: string) => {
@@ -66,7 +68,7 @@ export const ScannerOrKeyboardInput = (ev: KeyboardEvent) => {
     return response;
   }
   // Process special keys
-  if (!ignoreCode.includes(ev.code)) {
+  if (!ignoreCode.includes(ev.code) && !ignoreCode.includes(ev.key)) {
     if (ev.altKey) {
       altString.push(ev.key);
     } else {
