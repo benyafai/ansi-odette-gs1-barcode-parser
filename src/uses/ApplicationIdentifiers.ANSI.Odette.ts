@@ -1,6 +1,6 @@
 import { type AIList } from "../types/ApplicationIdentifierType";
 
-export const Odette = <AIList>{
+export const ANSIOdette = <AIList>{
   // ============================================================================
   // // Category 1 (A): Reserved
   // A-999A: Reserved

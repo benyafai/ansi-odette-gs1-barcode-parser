@@ -9,7 +9,7 @@
   "short_name": "Parser",
   "start_url": "https://parser.mnfctr.ng/",
   "scope": "https://parser.mnfctr.ng/",
-  "description": "Barcode scanner with parser for Odette and GS1 data.",
+  "description": "Barcode scanner with parser for ANSI, Odette and GS1 data.",
   "id": "https://parser.mnfctr.ng/",
   "icons": [
     {

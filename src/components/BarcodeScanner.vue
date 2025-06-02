@@ -33,7 +33,7 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 import { type AIList } from "../types/ApplicationIdentifierType";
 import { BarcodeParser } from "../uses/BarcodeParser";
 import { BarcodeFormatter } from "../uses/BarcodeFormatter";
-import { Odette } from "../uses/ApplicationIdentifiers.Odette";
+import { ANSIOdette } from "../uses/ApplicationIdentifiers.ANSI.Odette";
 import { GS1 } from "../uses/ApplicationIdentifiers.GS1";
 import { ScannerOrKeyboardInput } from "../uses/ScannerOrKeyboardInput";
 
@@ -68,10 +68,10 @@ export default defineComponent({
       this.parsedBarcode = {};
       this.formattedBarcode = "";
       // Identify format and parse barcode
-      let odetteResults = await BarcodeParser(decodedText, Odette);
+      let ansiOdetteResults = await BarcodeParser(decodedText, ANSIOdette);
       let gs1Results = await BarcodeParser(decodedText, GS1);
-      if (Object.keys(odetteResults).length > 0) {
-        this.parsedBarcode = odetteResults;
+      if (Object.keys(ansiOdetteResults).length > 0) {
+        this.parsedBarcode = ansiOdetteResults;
       } else if (Object.keys(gs1Results).length > 0) {
         this.parsedBarcode = gs1Results;
       }
