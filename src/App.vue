@@ -1,5 +1,5 @@
 <template>
-  <h1>Odette (ANSI), GS1 Barcode Parser</h1>
+  <h1>Odette, ANSI, GS1 Barcode Parser</h1>
   <BarcodeScanner />
 </template>
 
