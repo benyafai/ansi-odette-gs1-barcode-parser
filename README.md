@@ -1,3 +1,5 @@
 # Barcode Parser.
 
-Built in 2D scanner that will read a barcode and parse out the ANSI/Odette codes wth descriptions.
+Barcode parsing of ANSI, Odette and GS1 application identifiers with descriptions.
+
+Features a webcam-based 2D barcode scanner, file upload, or type/paste your barcode data (for USB scanners).
