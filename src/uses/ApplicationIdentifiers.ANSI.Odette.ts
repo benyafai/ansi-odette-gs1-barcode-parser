@@ -180,7 +180,7 @@ export const ANSIOdette = <AIList>{
     identifier: "25B",
     format: "an3+an1..35",
     title: "Party To The Transaction",
-    reg: /^(25B)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{35})/,
+    reg: /^(25B)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,35})/,
     desc: "Identification of a Party to a Transaction as defined in ISO 17364, assigned by a holder of a Company Identification Number (CIN) and including the related Issuing Agency Code (IAC) in accordance with ISO/IEC 15459 and its registry, structured as a sequence of 3 concatenated data elements: IAC, followed by CIN, followed by the RTI serial number that is unique within the CIN holder's domain.",
   },
   "26B": {
