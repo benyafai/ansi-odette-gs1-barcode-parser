@@ -1,4 +1,5 @@
 import { type AIList, type AIType } from "../types/ApplicationIdentifierType";
+import { ANSILooping } from "./ANSI.Looping";
 import { ANSIDateQualifier } from "./ANSI.DateQualifier";
 import { ANSIUnitOfMeasure } from "./ANSI.UnitOfMeasure";
 import { ANSIHazardQualifier } from "./ANSI.HazardQualifier";
@@ -127,9 +128,28 @@ export const BarcodeParser = async (
                 " " +
                 UnitOfMeasure;
             }
-
-            // result[ai].processed =
-            //   value.slice(0, -2) + " " + ANSIUnitOfMeasure[value.slice(-2)];
+          }
+          if (ApplicationIdentifiers[AI].overrideType == "ANSILooping") {
+            let loopData =
+              /^([\x30-\x39\x41-\x5A]{2})([\x30-\x39\x41-\x5A]{2})([\x30-\x39]{1})([\x41-\x5A]{1,2})$/.exec(
+                value
+              );
+            if (loopData && 1 in reg) {
+              let loopHasChildren = loopData[3] == "1" ? "Yes" : "No";
+              let loopLevelCode = ANSILooping[loopData[4]].level;
+              result[ai].processed =
+                "Item: " +
+                loopData[1] +
+                ", Parent: " +
+                loopData[2] +
+                ", Has Children: " +
+                loopHasChildren +
+                ", Level Code: " +
+                loopData[4] +
+                " (" +
+                loopLevelCode +
+                ")";
+            }
           }
           if (ApplicationIdentifiers[AI].overrideType == "ISO3166CountryCode") {
             if (!isNaN(parseInt(value)) && value.length == 3) {

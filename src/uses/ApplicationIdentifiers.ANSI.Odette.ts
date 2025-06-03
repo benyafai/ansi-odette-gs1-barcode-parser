@@ -594,8 +594,9 @@ export const ANSIOdette = <AIList>{
     identifier: "F",
     format: "",
     title: "Looping Header",
-    reg: /^(F)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    reg: /^(F)([\x30-\x39\x41-\x5A]{6,7})/,
     desc: "Looping Header as defined as Section VI of ANSI MH10.8.2",
+    overrideType: "ANSILooping",
   },
   "1F": {
     identifier: "1F",
