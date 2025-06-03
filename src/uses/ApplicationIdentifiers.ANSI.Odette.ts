@@ -476,19 +476,33 @@ export const ANSIOdette = <AIList>{
   },
   "27D": {
     identifier: "27D",
-    format: "an3+n16",
-    title: "Harvest date range",
-    reg: /^(27D)([\x30-\x39]{16})/,
-    desc: "Format YYYYMMDDYYYYMMDD. The start date and end date range over which harvesting occurred.\nFor example; animals were slaughtered or killed, fish were harvested, or a crop was harvested.\nThe data stream is defined as the first YYYYMMDD as the start date and the last YYYYMMDD as the end date.\nExample: 28D2017012320170214 = Start; January 23, 2017. End; February 14, 2017",
+    format: "an3+n8",
+    title: "First freeze date",
+    reg: /^(27D)([\x30-\x39]{8})/,
+    desc: "Format YYYYMMDD. The date when an animal was slaughtered or killed, a fish has been harvested, or a crop was harvested. Example: 27D20170615 = June 15, 2017",
   },
   "28D": {
     identifier: "28D",
-    format: "an3+n8",
-    title: "Best before date",
-    reg: /^(28D)([\x30-\x39]{8})/,
-    desc: "Format YYYYMMDD. Example: 25D20170202 = February 2, 2017",
+    format: "an3+n16",
+    title: "Harvest date range",
+    reg: /^(28D)([\x30-\x39]{16})/,
+    desc: "Format YYYYMMDDYYYYMMDD. The start date and end date range over which harvesting occurred.\nFor example; animals were slaughtered or killed, fish were harvested, or a crop was harvested.\nThe data stream is defined as the first YYYYMMDD as the start date and the last YYYYMMDD as the end date.\nExample: 28D2017012320170214 = Start; January 23, 2017. End; February 14, 2017",
   },
-  // 29D-999D: Reserved for future assignment
+  "29D": {
+    identifier: "29D",
+    format: "an3+n6",
+    title: "Expiration Date",
+    reg: /^(29D)([\x30-\x39]{6})/,
+    desc: "Format YYMMDD.",
+  },
+  "30D": {
+    identifier: "30D",
+    format: "an3+n6",
+    title: "Production Date",
+    reg: /^(30D)([\x30-\x39]{6})/,
+    desc: "Format YYYYMMDD.",
+  },
+  // 31D-999D: Reserved for future assignment
 
   // ============================================================================
   // Category 5 (E): Environmental Factors
@@ -1403,8 +1417,8 @@ export const ANSIOdette = <AIList>{
     identifier: "9N",
     format: "an2+an5..22",
     title: "Pharmacy Product Number (IFA)",
-    reg: /^(9N)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{5,22})/,
-    desc: "Maintained by IFA (www.ifaffm.de) and structured as follows: Two-digit product registration agency code followed by the registered product number (assigned by product registration agencies) and two PPN check digits.",
+    reg: /^(9N)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{11,28})/,
+    desc: "Maintained by IFA (www.ifaffm.de) with the following elements; Data Identifier (DI), two-digit product registration agency code (PRAC), the product reference (PR), and the two PPN check digits (CC), in the form DI PRAC PR CC.\nNOTE – space is added as a separator for visual clarity and is not part of the data. \nExamples:\n• 9N1112345678CC\n• 9N1312345MEDDEVICE1245678900CC",
   },
   "10N": {
     identifier: "10N",
@@ -1427,7 +1441,15 @@ export const ANSIOdette = <AIList>{
     reg: /^(12N)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "The Data construct is defined and controlled by the RLA, comprised of 2 segments: the field identifier (FI) code, immediately followed by the data as defined for that element according to the data dictionary of the RLA. It is essentially a catalog of fields with standardized content. The Field Identifiers are posted at http://rla.org/12ncodes The use and structure of these codes are defined at: http://rla.org/12nformat. Examples can be found at that site",
   },
-  // 13N-999N: Reserved for future assignment
+  // 13N-14N: Reserved for future assignment
+  "15N": {
+    identifier: "15N",
+    format: "an3+a3+n3+n3+n8+an1…33",
+    title: "Industrial Internet Identifier Codes",
+    reg: /^(15N)([\x41-\x5A\x61-\x7A]{3}[\x30-\x39]{3}[\x30-\x39]{3}[\x30-\x39]{8}[\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,33})/,
+    desc: "Representing Industrial Internet Identifier Codes controlled and maintained by CAICT, used in the Industrial Internet Identifier Resolution System of China and constructed as <DI><IAC><TTC><STC><CIN><SN>, in the form an3+a3+n3+n3+n8+an1…33, where an3 is the Data Identifier (DI), a3 is the Issuing Agency Code (IAC = “VAA”), n3 is the Top-Tier Code (TTC), n3 is the Secondary-Tier Code (STC), n8 is the Company Identification Number (CIN) controlled and assigned by the Secondary-Tier platform and an1…33 is the Serial Number (SN) that is controlled and assigned by the holder of the CIN, and is unique within that CIN holders’ domain, using the characters 0 through 9, upper- and lower-case A through Z, * (asterisk), + (plus sign), - (dash), . (period or full stop), / (forward slash), ( (left parenthesis), ) (right parenthesis), ! (exclamation mark).\nExamples:\n15NVAA08810000000001123Ab.098\n15NVAA08810000000001",
+  },
+  // 16N-999N: Reserved for future assignment
 
   // ============================================================================
   // Category 15 (O): Reserved
@@ -1461,14 +1483,14 @@ export const ANSIOdette = <AIList>{
     format: "an2+n13..14",
     title: "Combined Manufacturer Identification Code/Item Code",
     reg: /^(3P)([\x30-\x39]{13,14})/,
-    desc: "Under the 12/13-digit GS1 Formats, plus supplemental codes, if any.",
+    desc: "Under the 12/13-digit GS1 Formats, plus supplemental codes, if any.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.",
   },
   "4P": {
     identifier: "4P",
     format: "",
     title: "Item Code (GS1)",
     reg: /^(4P)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
-    desc: "Item Code Portion of GS1 Formats.",
+    desc: "Item Code Portion of GS1 Formats.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.",
   },
   "5P": {
     identifier: "5P",
@@ -1496,7 +1518,7 @@ export const ANSIOdette = <AIList>{
     format: "an2+n14",
     title: "GTIN-14 ",
     reg: /^(8P)([\x30-\x39]+)/,
-    desc: "14-digit GS1 format for GTIN-14 code structure.",
+    desc: "14-digit GS1 format for GTIN-14 code structure.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.",
   },
   "9P": {
     identifier: "9P",
@@ -1560,7 +1582,7 @@ export const ANSIOdette = <AIList>{
     format: "",
     title: "Combined GS1 Supplier Identification and Item Code",
     reg: /^(17P)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
-    desc: "Assigned By The Supplier.",
+    desc: "Assigned By The Supplier.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.",
   },
   "18P": {
     identifier: "18P",
@@ -1732,7 +1754,14 @@ export const ANSIOdette = <AIList>{
     reg: /^(54P)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{1,35})/,
     desc: "For Medical Devices (MD) and In-vitro-Diagnostics (IvD) as the unique key to public UDI data bases (GUDID, EUDAMED, etc.), according to national regulatory requirements, as outlined by the International Medical Device Regulators Forum (IMDRF). All printable characters of the UTF-8 character set are allowed.",
   },
-  // 55P-999P: Reserved for future assignment
+  "55P": {
+    identifier: "55P",
+    format: "an3+an1..35",
+    title: "UDI-DI (Unique Device Identification - Device Identifier)",
+    reg: /^(55P)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
+    desc: "DNV certification reference. Indicates that the data contains a reference to a product certificate/verification statement/report, issued by DNV. Data identifier shall be followed by letters “NV” and certificate number. When certificate Number has postfix, it should be included in the datastream by using the “-“ separator character. Revision indicators shall not be provided.\nExamples:\n1. 55PNVXXXXXXX, where 55P is the data identifier, XXXXXXX is DNV Certificate Number.\n2. 55PNVXXXXXXX-Y, where 55P is the data identifier, XXXXXXX-Y is DNV Certificate Number with postfix Y.",
+  },
+  // 56P-999P: Reserved for future assignment
 
   // ============================================================================
   // Category 17 (Q): Measurement
@@ -1970,11 +1999,24 @@ export const ANSIOdette = <AIList>{
     reg: /^(31Q)([\x30-\x39\x41-\x5A\x61-\x7A]{3})/,
     desc: "Currency, ISO 4217 currency code.\nStructure:      an3+an3\n                <DI><Currency, e.g., EUR>\nCharacter set:  A-Z, 0 to 9\nExample of encoding using ISO alphabetic code of US Dollar: 31QUSD\nExample of encoding using ISO alphabetic code of EURO: 31QEUR\nExample of encoding using ISO numeric code of EURO: 31Q978",
   },
-  // 32Q-999Q: Reserved for future assignment
+  "32Q": {
+    identifier: "32Q",
+    format: "an3+an3",
+    title: "Currency (ISO 4217 Code)",
+    reg: /^(32Q)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{3,35})/,
+    desc: "Clinical term code as defined with the clinical nomenclature: “The international standard for identifying health measurements, observations, and documents – LOINC” (https://loinc.org), in the following sequence: <DI><LOINC Code><Plus Sign><Value>. The unit and format of the Value is defined by the LOINC Code.\nExample: 32Q28903-3+60 = LOINC Code 28903-3: Left contact lens Axis (degrees); with Value = 60.",
+  },
+  // 33Q-999Q: Reserved for future assignment
 
   // ============================================================================
   // Category 18 (R): Miscellaneous
-  // R: Reserved
+  R: {
+    identifier: "R",
+    format: "a1+an93..2200",
+    title: "ICAO Datastructure for Travel Documents",
+    reg: /^(R)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{93,2200})/,
+    desc: "ICAO Datastructure for barcode of travel documents consisting of ICAO specific headers and payload defined with document “Machine Readable Travel Document” maintained at: https://www.icao.int/Security/FAL/TRIP/PublishingImages/Pages/Publications/ICAO%20TR%20-%20ICAO%20Datastructure%20for%20Barcode.pdf",
+  },
   "1R": {
     identifier: "1R",
     format: "",
@@ -2160,7 +2202,7 @@ export const ANSIOdette = <AIList>{
     format: "",
     title: "Combined GS1 ID and Unique Package Identification",
     reg: /^(17S)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
-    desc: "Combined 6-digit GS1 Supplier Identification and Unique Package Identification Assigned by the Supplier",
+    desc: "Combined 6-digit GS1 Supplier Identification and Unique Package Identification Assigned by the Supplier.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.",
   },
   "18S": {
     identifier: "18S",
@@ -2242,8 +2284,8 @@ export const ANSIOdette = <AIList>{
   // 29S: Reserved
   "30S": {
     identifier: "30S",
-    format: "Additional Traceability Code For An Entity",
-    title: "Serial",
+    format: "",
+    title: "Additional Traceability Code For An Entity",
     reg: /^(30S)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
     desc: "Assigned by the Supplier in addition to or different from the traceability code(s) provided by “S” or “1S”.",
   },
@@ -2567,14 +2609,14 @@ export const ANSIOdette = <AIList>{
     format: "",
     title: "Supplier Code (UPC)",
     reg: /^(2V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
-    desc: "U.P.C. Company Prefix.",
+    desc: "U.P.C. Company Prefix.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.\nAccording to GS1, the term “U.P.C.” is no longer used and the metadata (an2+n8) is no longer correct.\nGS1 recommends this DI not be used for future applications.",
   },
   "3V": {
     identifier: "3V",
     format: "",
     title: "Supplier Code (GS1)",
     reg: /^(3V)([\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]+)/,
-    desc: "GS1 Company Prefix.",
+    desc: "GS1 Company Prefix.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.\nAccording to GS1, the metadata (an2+n9) is no longer correct.\nGS1 recommends this DI not be used for future applications.",
   },
   "4V": {
     identifier: "4V",
@@ -2723,7 +2765,14 @@ export const ANSIOdette = <AIList>{
     reg: /^(24V)([\x41-\x5A\x61-\x7A]{2}[\x20-\x22\x25-\x2F\x30-\x39\x3A-\x3F\x41-\x5A\x5F\x61-\x7A]{3,18})/,
     desc: "Government-assigned Value Added Tax identification number identifying customer, starting with an ISO 3166-1 alpha-2 country code (except for Greece, which uses the ISO 639-1 language code EL), followed by the government-assigned VAT number.\nExample:\n23VIE6388047V assigned to Google Ireland",
   },
-  // 25V-999V: Reserved for future assignment
+  "25V": {
+    identifier: "25V",
+    format: "an3+an5",
+    title: "VAT ID (Customer)",
+    reg: /^(25V)([\x30-\x39\x41-\x48\x4A-\x4E\x50-\x5A]{5})/,
+    desc: "Declaring that the NCAGE/CAGE code that follows DI 25V is the Manufacturer. Party to a transaction wherein the NATO Commercial And Government Entity (NCAGE) / Commercial And Government Entity (CAGE) code used behind DI 25V is declared to be the manufacturer of the item(s) involved in the transaction. Data following DI 25V will consist of five upper-case alphanumeric characters, excluding the letters “I” and “O”.",
+  },
+  // 26V-999V: Reserved for future assignment
 
   // ============================================================================
   // Category 23 (W): Activity Reference
