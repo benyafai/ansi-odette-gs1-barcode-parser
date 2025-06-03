@@ -1516,7 +1516,7 @@ export const ANSIOdette = <AIList>{
   "8P": {
     identifier: "8P",
     format: "an2+n14",
-    title: "GTIN-14 ",
+    title: "GTIN-14",
     reg: /^(8P)([\x30-\x39]+)/,
     desc: "14-digit GS1 format for GTIN-14 code structure.\nGS1 recommends this DI no longer be used and that users of this DI migrate to GS1 data qualifiers (Application Identifiers) per ISO/IEC 15418 and ISO/IEC 15459-3.",
   },
