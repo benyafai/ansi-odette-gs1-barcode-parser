@@ -53,7 +53,7 @@ export const BarcodeParser = async (
     await BarcodeSplitter(bCode, ApplicationIdentifiers);
   });
   // Now we have our strings, parse the data for Application Identifiers
-  const result = <AIList>{};
+  const finalResult: AIList[] = [];
   parseList.forEach((bCode) => {
     Object.entries(ApplicationIdentifiers).forEach(([AI]) => {
       let regex = new RegExp(ApplicationIdentifiers[AI].reg as string);
@@ -62,6 +62,7 @@ export const BarcodeParser = async (
         if (reg && 2 in reg) {
           let ai = reg[1];
           let value = reg[2];
+          let result = <AIList>{};
           result[ai] = <AIType>{};
           result[ai].identifier = ai;
           result[ai].title = ApplicationIdentifiers[AI].title;
@@ -111,7 +112,6 @@ export const BarcodeParser = async (
           ) {
             let packData = /^(\d{2})(\w{1,6})([0-9\.]{5})(\w{2})$/.exec(value);
             if (packData && 1 in reg) {
-              console.log(packData);
               let matCategory =
                 ANSIMaterialCategoryAndCode[packData[1]].description;
               let matCode =
@@ -140,9 +140,10 @@ export const BarcodeParser = async (
               result[ai].processed = ISO3166CountryCodeAlpha2[value];
             }
           }
+          finalResult.push(result);
         }
       }
     });
   });
-  return result;
+  return finalResult;
 };
