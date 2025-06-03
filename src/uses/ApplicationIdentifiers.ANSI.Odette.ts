@@ -561,7 +561,8 @@ export const ANSIOdette = <AIList>{
     format: "an3+an9..15",
     title: "Declaration of Packaging Material Category, Code and Weight",
     reg: /^(12E)([\x30-\x39]{2}[\x30-\x39\x41-\x5A\x61-\x7A]{1,6}[\x2E\x30-\x39]{5}[\x41-\x5A\x61-\x7A]{2})/,
-    desc: "Declaration of Packaging Material Category*, Code* and Weight for a given packaging material used in a given packaging according to the EU packaging and packaging waste directive. (Material category and code defined in Annex M). 12ECCMMMMMMNNNNNUU where\n- “12E” (an3) is the Data Identifier,\n- “CC” (n2) is the Material Category per Annex M, - “MMMMMM” (an1...6) is the Material Code per Annex M,\n- “NNNNN” (n5) Material Weight, including decimal point (e.g., 12.12),\n- “UU” (an2) is the Unit of measure for weight (e.g., KG, GR, LB or OZ per ANSI X12.3 as in Annex D).",
+    desc: "Declaration of Packaging Material Category*, Code* and Weight for a given packaging material used in a given packaging according to the EU packaging and packaging waste directive. (Material category and code defined in Annex M). 12ECCMMMMMMNNNNNUU where\n- “12E” (an3) is the Data Identifier,\n- “CC” (n2) is the Material Category per Annex M,\n- “MMMMMM” (an1...6) is the Material Code per Annex M,\n- “NNNNN” (n5) Material Weight, including decimal point (e.g., 12.12),\n- “UU” (an2) is the Unit of measure for weight (e.g., KG, GR, LB or OZ per ANSI X12.3 as in Annex D).",
+    overrideType: "ANSIMaterialCategoryAndCode",
   },
   "13E": {
     identifier: "13E",

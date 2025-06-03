@@ -2,6 +2,7 @@ import { type AIList, type AIType } from "../types/ApplicationIdentifierType";
 import { ANSIDateQualifier } from "./ANSI.DateQualifier";
 import { ANSIUnitOfMeasure } from "./ANSI.UnitOfMeasure";
 import { ANSIHazardQualifier } from "./ANSI.HazardQualifier";
+import { ANSIMaterialCategoryAndCode } from "./ANSI.MaterialCategoryAndCode";
 import {
   ISO3166CountryCodeNumeric,
   ISO3166CountryCodeAlpha3,
@@ -103,6 +104,32 @@ export const BarcodeParser = async (
           if (ApplicationIdentifiers[AI].overrideType == "ANSIUnitOfMeasure") {
             result[ai].processed =
               value.slice(0, -2) + " " + ANSIUnitOfMeasure[value.slice(-2)];
+          }
+          if (
+            ApplicationIdentifiers[AI].overrideType ==
+            "ANSIMaterialCategoryAndCode"
+          ) {
+            let packData = /^(\d{2})(\w{1,6})([0-9\.]{5})(\w{2})$/.exec(value);
+            if (packData && 1 in reg) {
+              console.log(packData);
+              let matCategory =
+                ANSIMaterialCategoryAndCode[packData[1]].description;
+              let matCode =
+                ANSIMaterialCategoryAndCode[packData[1]].codes[packData[2]]
+                  .description;
+              let UnitOfMeasure = ANSIUnitOfMeasure[packData[4]];
+              result[ai].processed =
+                matCategory +
+                ": " +
+                matCode +
+                ": " +
+                packData[3] +
+                " " +
+                UnitOfMeasure;
+            }
+
+            // result[ai].processed =
+            //   value.slice(0, -2) + " " + ANSIUnitOfMeasure[value.slice(-2)];
           }
           if (ApplicationIdentifiers[AI].overrideType == "ISO3166CountryCode") {
             if (!isNaN(parseInt(value)) && value.length == 3) {
