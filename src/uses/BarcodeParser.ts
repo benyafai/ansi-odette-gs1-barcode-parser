@@ -41,13 +41,29 @@ export const BarcodeParser = async (
 ) => {
   // Reset
   parseList = [];
-  // Strip Headers and Trailers. Split string.
-  let barcodeData = barcode
-    .replace(/^\[\)>\x1e06\x1d/, "") // Strip Odette Header
-    .replace(/\x1e\x04$/, "") // Strip Odette Trailer
-    .replace(/^\]d2/, "") // Strip GS1 Header
-    .split("\x1d"); // Split by GS character.
+  let barcodeData = [] as string[];
 
+  if (barcode.startsWith("http")) {
+    // Assume we have a GS1 Digital Link
+    // Get the path and query, split strings.
+    let url = URL.parse(barcode);
+    let pathParts = url?.pathname.match(/[0-9a-zA-Z]+\/[0-9a-zA-Z]+/g);
+    pathParts?.forEach((parts) => {
+      barcodeData.push(parts.replace("/", ""));
+    });
+    let searchParts = url?.search.match(/[0-9a-zA-Z]+=[0-9a-zA-Z]+/g);
+    searchParts?.forEach((parts) => {
+      barcodeData.push(parts.replace("=", ""));
+    });
+  } else {
+    // Otherwise, assume any other type of barcode.
+    // Strip Headers and Trailers. Split string.
+    barcodeData = barcode
+      .replace(/^\[\)>\x1e06\x1d/, "") // Strip Odette Header
+      .replace(/\x1e\x04$/, "") // Strip Odette Trailer
+      .replace(/^\]d2/, "") // Strip GS1 Header
+      .split("\x1d"); // Split by GS character.
+  }
   // We don't always have a GS character, so recurse over
   // strings to see if any fixed length matches are found.
   barcodeData.forEach(async (bCode) => {
