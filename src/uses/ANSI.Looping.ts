@@ -1,41 +1,438 @@
 import type { ANSIHierarchicalLevelCodeType } from "../types/ANSI.HierarchicalLevelCodeType";
 
 export const ANSILooping = <ANSIHierarchicalLevelCodeType>{
-  S: {
-    level: "Shipment",
+  "0": { level: "Region", description: "" },
+  "1": {
+    level: "Service/Billing Provider",
     description:
-      "Data that applies to the whole shipment, such as bill of lading number, lading quantity, supplier code, etc.",
+      "Code identifying the telecommunications company providing service/billing",
   },
+  "2": {
+    level: "Billing Arrangement",
+    description: "Code identifying a specified billing arrangement",
+  },
+  "2A": { level: "Branch", description: "" },
+  "2B": {
+    level: "Direct Affiliate",
+    description: "Company in which a business owns a minority share",
+  },
+  "2C": { level: "Director", description: "" },
+  "2D": { level: "Headquarters", description: "" },
+  "2E": {
+    level: "Indirect Affiliate",
+    description:
+      "Company where relationship is through management and/or stockholders",
+  },
+  "2F": { level: "Management Antecedents", description: "" },
+  "2G": { level: "Management or Principal", description: "" },
+  "2H": { level: "Parent Company", description: "" },
+  "2I": { level: "Stockholder", description: "" },
+  "2J": { level: "Subsidiary", description: "" },
+  "2K": {
+    level: "Ultimate Domestic Parent Company",
+    description: "Top parent in the family tree located in the country",
+  },
+  "2L": {
+    level: "Ultimate Parent Company",
+    description: "Top parent in the family tree",
+  },
+  "3": {
+    level: "Sub-Billing Arrangement",
+    description: "Code identifying a more detailed billing arrangement",
+  },
+  "4": { level: "Group", description: "" },
+  "5": {
+    level: "Category",
+    description: "Code identifying the sub-division of the group",
+  },
+  "6": {
+    level: "Sub-Category",
+    description: "Code identifying a further breakdown of the category",
+  },
+  "7": {
+    level: "Type",
+    description: "Code identifying a further breakdown of the sub-category",
+  },
+  "8": {
+    level: "Charge Detail",
+    description:
+      "Code identifying the lowest level of charges within a billing arrangement",
+  },
+  "9": {
+    level: "Line Detail",
+    description:
+      "Code identifying the supporting detail associated with the charge or group",
+  },
+  "19": { level: "Provider of Service", description: "" },
+  "20": {
+    level: "Information Source",
+    description:
+      "Identifies the payor, maintainer, or source of the information",
+  },
+  "21": {
+    level: "Information Receiver",
+    description:
+      "Identifies the provider or party(ies) who are the recipient(s) of the information",
+  },
+  "22": {
+    level: "Subscriber",
+    description:
+      "Identifies the employee or group member who is covered for insurance and to whom, or on behalf of whom, the insurer agrees to pay benefits",
+  },
+  "23": {
+    level: "Dependent",
+    description:
+      "Identifies the individual who is affiliated with the subscriber, such as spouse, child, etc., and therefore may be entitled to benefits",
+  },
+  "24": { level: "Supergroup", description: "" },
+  "25": { level: "Subgroup", description: "" },
+  "26": { level: "Member", description: "" },
+  "27": { level: "Ancillary Facility or Department", description: "" },
+  "28": { level: "Hospital", description: "" },
+  "29": { level: "Franchisor", description: "" },
+  "30": { level: "Franchisee", description: "" },
+  "31": { level: "Franchisee Association", description: "" },
+  "32": {
+    level:
+      "Health Industry Business Communications Council (HIBCC) Health Industry Number (HIN) Database",
+    description: "",
+  },
+  "33": { level: "Activity", description: "" },
+  "34": { level: "Location Record", description: "" },
+  "35": {
+    level: "Company/Corporation",
+    description: "Any company or business",
+  },
+  "36": {
+    level: "Operating Unit",
+    description: "Any operating business unit within a company or corporation",
+  },
+  "37": {
+    level: "Property",
+    description:
+      "Any, building, structure, or body of land that is considered a single thing",
+  },
+  "38": {
+    level: "Tradename",
+    description:
+      "A name by which the public identifies a business or product that is owned by a company or business",
+  },
+  "39": { level: "Accountant", description: "" },
+  "40": { level: "Financial Institution", description: "" },
+  "41": { level: "Product Level", description: "" },
+  "42": { level: "Activity Details", description: "" },
+  "43": { level: "Payment Summary Score", description: "" },
+  "44": { level: "Corporate Registration Filings", description: "" },
+  "45": { level: "Bankruptcy Details", description: "" },
+  "46": { level: "Company History", description: "" },
+  "47": { level: "Complete Financial History", description: "" },
+  "48": { level: "Balance Sheet", description: "" },
+  "49": { level: "Comparative Figures", description: "" },
+  "50": { level: "Payment Analysis", description: "" },
+  "51": { level: "Special Notification", description: "" },
+  "52": { level: "Public Record Financing Details", description: "" },
+  "53": { level: "Public Record Financing Summary", description: "" },
+  "54": { level: "Public Record Claim Details", description: "" },
+  "55": { level: "Public Record Claim Summary", description: "" },
+  "56": {
+    level: "Statement of Work",
+    description:
+      "A part of a description of what work needs to be performed under a contract",
+  },
+  "57": { level: "Legal Action Details", description: "" },
+  "58": { level: "Legal Action Summary", description: "" },
+  "59": { level: "Company Evaluation", description: "" },
+  "60": { level: "Company Summary", description: "" },
+  "61": { level: "Credit Scores", description: "" },
+  "62": { level: "Industry Averages", description: "" },
+  "63": { level: "Referring Provider", description: "" },
+  "64": { level: "Employee", description: "" },
+  "65": { level: "Insurance Policy", description: "" },
+  "66": { level: "Vehicle", description: "" },
+  "67": { level: "Key Contributor", description: "" },
+  "68": { level: "Public Record Summary", description: "" },
+  "69": { level: "Delinquency Projections", description: "" },
+  "70": { level: "Temporary Services Detail", description: "" },
+  "71": { level: "Overnight Shipping Detail", description: "" },
+  "72": { level: "Medical Supply Detail", description: "" },
+  "73": { level: "Equipment Leasing Detail", description: "" },
+  A: { level: "Assembly", description: "" },
+  AA: { level: "Insurer", description: "" },
+  AB: { level: "Claim Administrator", description: "" },
+  AC: { level: "Insured", description: "" },
+  AD: { level: "Administrative Information", description: "" },
+  AE: { level: "Car Rental Detail", description: "" },
+  AF: { level: "Lodging Detail", description: "" },
+  AG: { level: "Agent", description: "" },
+  AH: { level: "Transportation Detail", description: "" },
+  AI: { level: "Purchase Card Detail", description: "" },
+  AJ: { level: "Alternate Taxing Authority", description: "" },
+  AL: {
+    level: "Alternate Specification - Lift Level",
+    description:
+      "Designates the hierarchical level detail specifications of the largest warehouse/shop floor applications; alternate specification to be used as an option when the primary can not be provided",
+  },
+  AM: { level: "Amount Information", description: "" },
+  AP: { level: "Credential Action", description: "" },
+  AS: { level: "Animal Subject Group", description: "" },
+  AT: { level: "Account", description: "" },
+  B: { level: "Buyer's Location", description: "" },
+  BD: { level: "Building", description: "" },
+  BE: { level: "Business Entity", description: "" },
+  BP: { level: "Body Part", description: "" },
+  BT: { level: "Batch", description: "" },
+  C: { level: "Date", description: "" },
+  CB: { level: "Contractholder Branch Office", description: "" },
+  CC: {
+    level: "Cost Center",
+    description: "A location to which incurred costs accrue",
+  },
+  CE: {
+    level: "Cost Element",
+    description: "A element of cost within a total proposed price",
+  },
+  CH: { level: "Contractholder", description: "" },
+  CI: { level: "Cause of Injury", description: "" },
+  CL: { level: "Claimant", description: "" },
+  CN: { level: "Container", description: "" },
+  CO: { level: "Consortium", description: "" },
+  CP: { level: "Client or Party", description: "" },
+  CT: {
+    level: "Cost Type",
+    description: "A breakdown of the type of cost being incurred",
+  },
+  CV: { level: "Coverage, Rider, or Supplementary Benefit", description: "" },
+  D: { level: "Product Description", description: "" },
+  DG: { level: "Drawing", description: "" },
+  DM: { level: "Damage", description: "" },
+  DP: {
+    level: "Department",
+    description: "An organization entity within a larger business entity",
+  },
+  DS: { level: "District", description: "" },
+  E: { level: "Transportation Equipment", description: "" },
+  EB: { level: "Filer", description: "" },
+  EC: { level: "Receipts", description: "" },
+  ED: { level: "Engineering Data List", description: "" },
+  EF: { level: "Expenditures", description: "" },
+  EG: { level: "Receivables", description: "" },
+  EH: { level: "Payables", description: "" },
+  EI: { level: "Organizational Information", description: "" },
+  EL: {
+    level: "Exhibit Line Item",
+    description:
+      "A number for a document referenced in and appended to a procurement instrument that establishes a delivery requirement",
+  },
+  EM: { level: "Employer", description: "" },
+  EN: { level: "End Item", description: "" },
+  EV: { level: "Event", description: "" },
+  EX: { level: "Exception", description: "" },
+  F: {
+    level: "Component",
+    description: "Data related to the manufacturer’s component.",
+  },
+  FC: {
+    level: "Function Code",
+    description:
+      "A function within a larger set describing the total work to be performed",
+  },
+  FG: { level: "Functional Group", description: "" },
+  FI: { level: "Financial Information", description: "" },
+  FL: { level: "Fleet", description: "" },
+  FR: { level: "Frame", description: "" },
+  G: {
+    level: "Quality Characteristics",
+    description:
+      "A historical record of product quality characteristics and or discrepancies for a given item of supply",
+  },
+  GC: { level: "Group Coverage Options", description: "" },
+  GP: { level: "Group Purchasing Organization", description: "" },
+  GW: { level: "Group Work Candidate", description: "" },
+  H: { level: "Bill of Materials", description: "" },
+  HE: { level: "EPA Waste Number Subsection", description: "" },
+  HP: { level: "Waste Profile Sheet", description: "" },
+  I: {
+    level: "Item",
+    description: "Stock keeping unit (SKU) identification data.",
+  },
+  IA: {
+    level: "Subline Item",
+    description:
+      "A subdivision of the line item, typically used to describe a separate point of delivery",
+  },
+  IB: { level: "Contract", description: "An agreement between partners" },
+  IC: { level: "Contract Data Requirements List (CDRL)", description: "" },
+  IN: { level: "Interchange", description: "" },
+  IS: { level: "Installments", description: "" },
+  IT: { level: "Institution", description: "" },
+  IV: { level: "Individual", description: "" },
+  J: { level: "Part Characteristic", description: "" },
+  JU: { level: "Jurisdiction", description: "" },
+  K: { level: "Kit", description: "" },
+  KA: { level: "Accident History", description: "" },
+  KB: { level: "Chemical", description: "" },
+  KC: { level: "Control Device", description: "" },
+  KD: { level: "Discharge", description: "" },
+  KE: { level: "Emergency Response Plan", description: "" },
+  KF: { level: "Emission", description: "" },
+  KG: { level: "Emission Activity", description: "" },
+  KH: { level: "Emission Release Point", description: "" },
+  KI: { level: "Emission Unit", description: "" },
+  KJ: { level: "Flammable Mixture", description: "" },
+  KK: { level: "Flammables Alternate Release", description: "" },
+  KL: { level: "Flammables Worst Case", description: "" },
+  KM: { level: "Hazardous Waste Generation", description: "" },
+  KN: { level: "Hazardous Waste Received", description: "" },
+  KO: { level: "Off-Site Process", description: "" },
+  KP: { level: "On-Site Process", description: "" },
+  KQ: { level: "Parameter", description: "" },
+  KR: { level: "Prevention Program", description: "" },
+  KS: { level: "Process", description: "" },
+  KT: { level: "Reduction and Recycling", description: "" },
+  KV: { level: "Toxics Alternate Release", description: "" },
+  KW: { level: "Toxics Worst Case", description: "" },
+  KX: { level: "Transfer", description: "" },
+  L: { level: "Supplier's Location", description: "" },
+  LD: { level: "Lender or Mortgage Company", description: "" },
+  LN: { level: "Loan Data", description: "" },
+  LP: { level: "Party to the Loan", description: "" },
+  M: { level: "Measurement", description: "" },
+  ML: {
+    level: "Manufacturing Level",
+    description:
+      "Nesting category for use in the HL segment that defines manufacturing or processing stages associated with specification, characteristics, controls, activities, or measurements",
+  },
+  N: { level: "Site of Service", description: "" },
+  NI: { level: "Nature of Injury", description: "" },
+  NS: { level: "National Stock Number", description: "" },
   O: {
     level: "Order",
     description:
-      "Data related to the sender's order and the associated receiver's original purchase order.",
+      "Data related to the sender's order and the associated receiver's original purchase order",
   },
-  T: {
-    level: "Tare",
-    description:
-      "The tare level is used to identify pallets. If there are no identifiable pallets, this level may be omitted",
-  },
+  OS: { level: "Support", description: "" },
   P: {
     level: "Pack",
     description:
       "The pack level is used to identify the cartons within which the item is shipped, e.g., label serial numbers. In most cases there will be some sort of packs.",
   },
+  PA: { level: "Primary Administrator", description: "" },
+  PB: { level: "Personal Property", description: "" },
+  PC: { level: "Project Code", description: "A part of a larger effort" },
+  PD: { level: "Procedure", description: "" },
+  PE: { level: "Person", description: "" },
+  PH: { level: "Product Characteristic", description: "" },
+  PI: { level: "Property Identification", description: "" },
+  PK: { level: "Property Tax", description: "" },
+  PL: {
+    level: "Primary Specification - Lift Level",
+    description:
+      'Designates the hierarchical level detailing specifications of the largest unitized configuration to be handled mechanically in warehouse/shop floor applications; "primary" indicates preferred or mandatory, and all subsequent "HL" segments contain specifications of upper or interior levels of the lift level as required',
+  },
+  PP: { level: "Related Parties", description: "" },
+  PR: {
+    level: "Principal",
+    description:
+      "An entity granting authority to another to act in its behalf, such as a lobbyist's principal or an entity granting power of attorney.",
+  },
+  PS: { level: "Property Segment Group", description: "" },
+  PT: { level: "Patient", description: "" },
+  PY: { level: "Payment Detail", description: "" },
   Q: {
-    level: "Sub-pack",
+    level: "Subpack",
     description:
       "Data related to a grouping of identifiable packages within the pack level.\nNote that this level is only used when the inner pack has identifiable numbers for each inner pack.",
   },
-  I: {
-    level: "Item",
-    description: "Stock keeping unit (SKU) identification data.",
+  R: { level: "Quantity", description: "" },
+  RA: { level: "Reporting Agency", description: "" },
+  RB: { level: "Response", description: "" },
+  RC: { level: "Response Details", description: "" },
+  RD: { level: "Response Sub-details", description: "" },
+  RE: { level: "Response Particular", description: "" },
+  RF: { level: "Medication", description: "" },
+  RG: { level: "Recommendation", description: "" },
+  RH: { level: "Review History", description: "" },
+  RL: { level: "Reference Location", description: "" },
+  RM: { level: "Room", description: "" },
+  RP: {
+    level: "Report",
+    description:
+      "The level of the hierarchical structure used to identify basic report information",
   },
-  F: {
-    level: "Component",
-    description: "Data related to the manufacturer’s component.",
+  S: {
+    level: "Shipment",
+    description:
+      "Data that applies to the whole shipment, such as bill of lading number, lading quantity, supplier code, etc.",
   },
+  S1: { level: "Site", description: "" },
+  S2: { level: "Sample", description: "" },
+  S3: { level: "Test", description: "" },
+  SA: { level: "Secondary Administrator", description: "" },
+  SB: { level: "Substitute", description: "" },
+  SC: {
+    level: "Subcontract Line Item",
+    description:
+      "A further subdivision of a contract line item number, used for information or when a separate delivery is involved",
+  },
+  SD: { level: "Support Document", description: "" },
+  SE: {
+    level: "Subexhibit Line Item",
+    description: "A further subdivision of a contract exhibit line item",
+  },
+  SF: { level: "Safety Fitness", description: "" },
+  SG: { level: "Safety Factor", description: "" },
+  SH: { level: "Sheet", description: "" },
+  SI: { level: "Source of Injury", description: "" },
+  SL: { level: "Solicitation", description: "" },
+  SP: { level: "Sub-Project", description: "" },
+  SR: { level: "Subroom", description: "" },
+  SS: { level: "Services", description: "" },
+  ST: { level: "State", description: "" },
+  SY: { level: "System", description: "" },
+  T: {
+    level: "Tare",
+    description:
+      "The tare level is used to identify pallets. If there are no identifiable pallets, this level may be omitted",
+  },
+  TA: { level: "Taxing Authority", description: "" },
+  TD: { level: "Tax Delinquency", description: "" },
+  TI: { level: "Technical Information Package", description: "" },
+  TS: { level: "Transaction Set", description: "" },
+  TU: { level: "Traffic Unit", description: "" },
+  TX: { level: "Tax Installment", description: "" },
+  U: { level: "Subassembly", description: "" },
+  UT: { level: "Unit or Lot", description: "" },
+  V: {
+    level: "Address Information",
+    description:
+      "The HL loop will identify entities associated with the shipment notice transaction",
+  },
+  VI: { level: "Violation", description: "" },
+  W: {
+    level: "Transaction Reference Number",
+    description:
+      "The HL loop will identify shipment notice information for each reported transaction reference number",
+  },
+  WB: {
+    level: "Work Breakdown Structure",
+    description:
+      "An individual element of work portrayed in tree structure stages of the total performance of a contract",
+  },
+  WC: {
+    level: "Work Candidate",
+    description: "Identifies a maintenance or repair requirement",
+  },
+  WL: { level: "Well", description: "" },
+  WP: { level: "Well Completion", description: "" },
+  WR: { level: "Wellbore", description: "" },
   X: {
-    level: "Serial #",
-    description: "Data related to the manufacturer’s serial number.",
+    level: "Serial Number",
+    description: "Serial numbers applicable to a referenced item of supply",
   },
+  Y: {
+    level: "Suffix",
+    description:
+      "The HL loop will identify shipment notice information for each reported suffix",
+  },
+  ZZ: { level: "Mutually Defined", description: "" },
 };
