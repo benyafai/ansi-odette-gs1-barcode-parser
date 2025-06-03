@@ -11,16 +11,18 @@
       v-if="formattedBarcode && Object.keys(parsedBarcode).length <= 0"
       v-html="formattedBarcode"
     ></h2>
-    <template v-for="ai in parsedBarcode" :key="ai.identifier">
-      <template v-if="ai.value">
-        <h2>{{ ai.value }}</h2>
-        <p v-if="ai.processed">{{ ai.processed }}</p>
-        <details>
-          <summary>
-            <b>{{ "[" + ai.identifier + "] " + ai.title }}</b>
-          </summary>
-          <small>{{ ai.desc }}</small>
-        </details>
+    <template v-for="res in parsedBarcode">
+      <template v-for="ai in res" :key="ai.identifier">
+        <template v-if="ai.value">
+          <h2>{{ ai.value }}</h2>
+          <p v-if="ai.processed">{{ ai.processed }}</p>
+          <details>
+            <summary>
+              <b>{{ "[" + ai.identifier + "] " + ai.title }}</b>
+            </summary>
+            <small>{{ ai.desc }}</small>
+          </details>
+        </template>
       </template>
     </template>
   </div>
@@ -37,6 +39,8 @@ import { ANSIOdette } from "../uses/ApplicationIdentifiers.ANSI.Odette";
 import { GS1 } from "../uses/ApplicationIdentifiers.GS1";
 import { ScannerOrKeyboardInput } from "../uses/ScannerOrKeyboardInput";
 
+type Results = AIList[];
+
 export default defineComponent({
   name: "Barcodes",
   props: {
@@ -45,7 +49,7 @@ export default defineComponent({
     supportedScanTypes: Array,
   },
   data: () => ({
-    parsedBarcode: <AIList>{},
+    parsedBarcode: <Results>[],
     formattedBarcode: "",
   }),
   mounted() {
@@ -65,7 +69,7 @@ export default defineComponent({
   methods: {
     async onScanSuccess(decodedText: string) {
       // reset results
-      this.parsedBarcode = {};
+      this.parsedBarcode = [];
       this.formattedBarcode = "";
       // Identify format and parse barcode
       let ansiOdetteResults = await BarcodeParser(decodedText, ANSIOdette);
@@ -80,7 +84,7 @@ export default defineComponent({
     },
     watchKeys(ev: KeyboardEvent) {
       if (ev.code == "Escape") {
-        this.parsedBarcode = {};
+        this.parsedBarcode = [];
         this.formattedBarcode = "";
         return;
       }
