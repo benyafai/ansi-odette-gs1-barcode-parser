@@ -1,8 +1,5 @@
 <template>
-  <p
-    v-html="formattedBarcode"
-    style="word-wrap: break-word; overflow: scroll"
-  ></p>
+  <p v-html="formattedBarcode"></p>
   <div id="qr-code">
     <div id="qr-code-full-region"></div>
   </div>
