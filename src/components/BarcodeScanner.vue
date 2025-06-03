@@ -51,13 +51,14 @@ export default defineComponent({
   }),
   mounted() {
     window.addEventListener("keydown", this.watchKeys);
+    const config = {
+      fps: this.fps ? this.fps : 10,
+      qrbox: this.qrbox ? this.qrbox : 250,
+      supportedScanTypes: [],
+    };
     const html5QrcodeScanner = new Html5QrcodeScanner(
       "qr-code-full-region",
-      {
-        fps: this.fps ?? 10,
-        qrbox: this.qrbox ?? 250,
-        supportedScanTypes: this.supportedScanTypes ?? [],
-      },
+      config,
       false
     );
     html5QrcodeScanner.render(this.onScanSuccess, undefined);
