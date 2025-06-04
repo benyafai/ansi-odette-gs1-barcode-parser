@@ -43,7 +43,7 @@ export const BarcodeParser = async (
   parseList = [];
   let barcodeData = [] as string[];
 
-  if (barcode.startsWith("http")) {
+  if (barcode.toLowerCase().startsWith("http")) {
     // Assume we have a GS1 Digital Link
     // Get the path and query, split strings.
     let url = URL.parse(barcode);

@@ -1,5 +1,5 @@
 export const BarcodeFormatter = (barcode: string) => {
-  if (barcode.startsWith("http")) {
+  if (barcode.toLowerCase().startsWith("http")) {
     return 'GS1 Digital Link: <a href="' + barcode + '">' + barcode + "</a>";
   } else {
     return (
