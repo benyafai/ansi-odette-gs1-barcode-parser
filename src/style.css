@@ -1,40 +1,12 @@
-@font-face {
-    font-family: "Fira Code";
-    font-style: normal;
-    font-weight: 300;
-    font-display: swap;
-    src: url(./assets/FiraCode-Light.woff2) format("woff2");
-}
-@font-face {
-    font-family: "Fira Code";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url(./assets/FiraCode-Regular.woff2) format("woff2");
-}
-@font-face {
-    font-family: "Fira Code";
-    font-style: normal;
-    font-weight: 500;
-    font-display: swap;
-    src: url(./assets/FiraCode-Medium.woff2) format("woff2");
-}
-@font-face {
-    font-family: "Fira Code";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url(./assets/FiraCode-SemiBold.woff2) format("woff2");
-}
-@font-face {
-    font-family: "Fira Code";
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url(./assets/FiraCode-Bold.woff2) format("woff2");
-}
 :root {
-    font-family: "Fira Code", Courier, monospace;
+    font-family: ui-monospace,
+        Menlo,           Monaco,
+        "Cascadia Mono", "Segoe UI Mono",
+        "Roboto Mono",   "Oxygen Mono",
+        "Ubuntu Mono",   "Source Code Pro",
+        "Fira Mono",     "Droid Sans Mono",
+        "Consolas",      "Courier New",
+        monospace;
     line-height: 1.5;
     font-weight: 400;
 
