@@ -23,7 +23,7 @@
       </template>
     </template>
   </div>
-  <a @click="paste()" class="paste">📋</a>
+  <a @click="pasteButton()" class="paste">📋</a>
 </template>
 
 <script lang="ts">
@@ -51,6 +51,7 @@ export default defineComponent({
   }),
   mounted() {
     window.addEventListener("keydown", this.watchKeys);
+    window.addEventListener("paste", this.watchPaste);
     const config = {
       fps: this.fps ? this.fps : 10,
       qrbox: this.qrbox ? this.qrbox : 250,
@@ -90,7 +91,15 @@ export default defineComponent({
         this.onScanSuccess(scannedBarcode);
       }
     },
-    async paste() {
+    watchPaste(ev: ClipboardEvent) {
+      if (ev.isTrusted) {
+        let clipboardText = ev.clipboardData?.getData("text");
+        if (typeof clipboardText === "string") {
+          this.onScanSuccess(clipboardText);
+        }
+      }
+    },
+    async pasteButton() {
       let clipboard = await navigator.clipboard.readText();
       this.onScanSuccess(clipboard);
     },
