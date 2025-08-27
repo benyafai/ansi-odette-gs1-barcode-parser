@@ -14,7 +14,7 @@ let parseList = [] as string[];
 
 async function BarcodeSplitter(
   barcode: string,
-  ApplicationIdentifiers: AIList
+  ApplicationIdentifiers: AIList,
 ) {
   Object.entries(ApplicationIdentifiers).forEach(async ([Identifier]) => {
     let regex = new RegExp(ApplicationIdentifiers[Identifier].reg as string);
@@ -27,7 +27,7 @@ async function BarcodeSplitter(
           // There is still more to go, recurse!
           await BarcodeSplitter(
             barcode.slice(reg[0].length),
-            ApplicationIdentifiers
+            ApplicationIdentifiers,
           );
         }
       }
@@ -37,7 +37,7 @@ async function BarcodeSplitter(
 
 export const BarcodeParser = async (
   barcode: string,
-  ApplicationIdentifiers: AIList
+  ApplicationIdentifiers: AIList,
 ) => {
   // Reset
   parseList = [];
@@ -100,14 +100,14 @@ export const BarcodeParser = async (
                 rawDate.length == 8
                   ? rawDate.slice(0, 4)
                   : new Date().getFullYear().toString().slice(0, 2) +
-                      rawDate.slice(0, 2)
+                      rawDate.slice(0, 2),
               ),
               parseInt(
-                rawDate.length == 8 ? rawDate.slice(4, 6) : rawDate.slice(2, 4)
+                rawDate.length == 8 ? rawDate.slice(4, 6) : rawDate.slice(2, 4),
               ) - 1,
               parseInt(
-                rawDate.length == 8 ? rawDate.slice(6, 8) : rawDate.slice(4, 6)
-              )
+                rawDate.length == 8 ? rawDate.slice(6, 8) : rawDate.slice(4, 6),
+              ),
             );
             result[ai].processed =
               new Date(timestamp).toLocaleDateString() +
@@ -148,7 +148,7 @@ export const BarcodeParser = async (
           if (ApplicationIdentifiers[AI].overrideType == "ANSILooping") {
             let loopData =
               /^([\x30-\x39\x41-\x5A]{2})([\x30-\x39\x41-\x5A]{2})([\x30-\x39]{1})([\x41-\x5A]{1,2})$/.exec(
-                value
+                value,
               );
             if (loopData && 1 in reg) {
               let loopHasChildren = loopData[3] == "1" ? "Yes" : "No";

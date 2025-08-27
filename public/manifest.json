@@ -13,9 +13,9 @@
   "id": "https://parser.mnfctr.ng/",
   "icons": [
     {
-      "src": "\/icon.png",
+      "src": "/icon.png",
       "sizes": "256x256",
-      "type": "image\/png",
+      "type": "image/png",
       "density": "0.75"
     }
   ]

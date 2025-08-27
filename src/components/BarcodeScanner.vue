@@ -60,7 +60,7 @@ export default defineComponent({
     const html5QrcodeScanner = new Html5QrcodeScanner(
       "qr-code-full-region",
       config,
-      false
+      false,
     );
     html5QrcodeScanner.render(this.onScanSuccess, undefined);
   },
