@@ -66,18 +66,34 @@ export const ScannerOrKeyboardInput = (ev: KeyboardEvent) => {
     let response = scannedString.join("").toUpperCase();
 
     // If our input has been purely decimals (multiple groups of 4 digits) then convert it to ASCII
+    // i.e. Zebra DS2208, a desktop USB scanner
     if (
       response.length > 4 &&
-      /^[0-9]+$/g.test(response) &&
+      /^[0-9]+$/.test(response) &&
       response.length % 4 == 0
     ) {
-      let inputArray = response.split(/(0\d{3})/).filter((c) => c !== "");
-      response = String.fromCharCode.apply(
-        null,
-        inputArray.map((num) => {
-          return parseInt(num);
-        }),
-      );
+      response = response
+        .split(/(0\d{3})/)
+        .filter((c) => c !== "")
+        .map((v) => {
+          return String.fromCharCode(parseInt(v, 16));
+        })
+        .join("");
+    }
+    // If our input has been purely hexadecimal (multiple groups of 2 characters) then convert it to ASCII
+    // i.e. Zebra MC3400, a mobile scanner
+    if (
+      response.length > 2 &&
+      /^[0-9A-F]+$/.test(response) &&
+      response.length % 2 == 0
+    ) {
+      response = response
+        .split(/([0-9A-F]{2})/)
+        .filter((c) => c !== "")
+        .map((v) => {
+          return String.fromCharCode(parseInt(v, 16));
+        })
+        .join("");
     }
     // Reset the input before returning the response.
     scannedString = [];
