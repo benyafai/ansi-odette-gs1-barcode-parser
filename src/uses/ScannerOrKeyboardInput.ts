@@ -64,6 +64,22 @@ export const ScannerOrKeyboardInput = (ev: KeyboardEvent) => {
   // Return our response when requested
   if (ev.code == "Enter") {
     let response = scannedString.join("").toUpperCase();
+
+    // If our input has been purely decimals (multiple groups of 4 digits) then convert it to ASCII
+    if (
+      response.length > 4 &&
+      /^[0-9]+$/g.test(response) &&
+      response.length % 4 == 0
+    ) {
+      let inputArray = response.split(/(0\d{3})/).filter((c) => c !== "");
+      response = String.fromCharCode.apply(
+        null,
+        inputArray.map((num) => {
+          return parseInt(num);
+        }),
+      );
+    }
+    // Reset the input before returning the response.
     scannedString = [];
     return response;
   }
