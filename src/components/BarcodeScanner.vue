@@ -50,7 +50,7 @@ export default defineComponent({
     formattedBarcode: "",
   }),
   mounted() {
-    window.addEventListener("keydown", this.watchKeys);
+    window.addEventListener("keypress", this.watchKeys);
     window.addEventListener("paste", this.watchPaste);
     const config = {
       fps: this.fps ? this.fps : 10,
