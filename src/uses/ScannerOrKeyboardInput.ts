@@ -76,7 +76,7 @@ export const ScannerOrKeyboardInput = (ev: KeyboardEvent) => {
         .split(/(0\d{3})/)
         .filter((c) => c !== "")
         .map((v) => {
-          return String.fromCharCode(parseInt(v, 16));
+          return String.fromCharCode(parseInt(v));
         })
         .join("");
     }
