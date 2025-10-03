@@ -65,6 +65,14 @@ export const ScannerOrKeyboardInput = (ev: KeyboardEvent) => {
   if (ev.code == "Enter") {
     let response = scannedString.join("").toUpperCase();
 
+    // If we have a specific barcode format, remove the prefix
+    BarcodeFomat.forEach((bcf) => {
+      const regex = bcf.regex;
+      if (regex?.test(response)) {
+        response = response.replace(regex, "");
+      }
+    });
+
     // If our input has been purely decimals (multiple groups of 4 digits) then convert it to ASCII
     // i.e. Zebra DS2208, a desktop USB scanner
     if (
@@ -109,3 +117,47 @@ export const ScannerOrKeyboardInput = (ev: KeyboardEvent) => {
   }
   return scannedString.join("").toUpperCase();
 };
+
+type BarcodeFomatType = {
+  type: string;
+  prefix: string;
+  regex?: ReturnType<typeof RegExp>;
+};
+
+const BarcodeFomat = [
+  <BarcodeFomatType>{
+    type: "STX",
+    prefix: "\u{0003}",
+    regex: /^\u0003/,
+  },
+  <BarcodeFomatType>{
+    type: "GROUP_SEPARATOR_SYMBOL",
+    prefix: "\u{001d}",
+    regex: /^\u001d/,
+  },
+  <BarcodeFomatType>{
+    type: "FNC1_SYMBOL",
+    prefix: "\u{00e8}",
+    regex: /^\u00e8/,
+  },
+  <BarcodeFomatType>{
+    type: "FNC1_GS1_DATAMATRIX_SEQUENCE",
+    prefix: "]d2",
+    regex: /^]d2/,
+  },
+  <BarcodeFomatType>{
+    type: "FNC1_GS1_QRCODE_SEQUENCE",
+    prefix: "]Q3",
+    regex: /^]Q3/,
+  },
+  <BarcodeFomatType>{
+    type: "FNC1_GS1_EAN_SEQUENCE",
+    prefix: "]e0",
+    regex: /^]e0/,
+  },
+  <BarcodeFomatType>{
+    type: "FNC1_GS1_128_SEQUENCE",
+    prefix: "]C1",
+    regex: /^]C1/,
+  },
+];
