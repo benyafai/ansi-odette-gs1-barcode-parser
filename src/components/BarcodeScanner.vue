@@ -80,13 +80,13 @@ export default defineComponent({
       // Render our non-human-readable chacters for actual humans to see!
       this.formattedBarcode = BarcodeFormatter(decodedText);
     },
-    watchKeys(ev: KeyboardEvent) {
+    async watchKeys(ev: KeyboardEvent) {
       if (ev.code == "Escape") {
         this.parsedBarcode = [];
         this.formattedBarcode = "";
         return;
       }
-      let scannedBarcode = ScannerOrKeyboardInput(ev);
+      let scannedBarcode = await ScannerOrKeyboardInput(ev);
       if (ev.code == "Enter") {
         this.onScanSuccess(scannedBarcode);
       }

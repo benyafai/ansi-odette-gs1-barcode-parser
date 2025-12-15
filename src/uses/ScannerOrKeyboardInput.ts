@@ -1,5 +1,60 @@
-let scannedString = [] as string[];
-let altString = [] as string[];
+let scanned: string = "";
+let converted: string = "";
+let timeout: ReturnType<typeof setTimeout>;
+let altUsed = false as boolean;
+
+export async function ScannerOrKeyboardInput(ev: KeyboardEvent): Promise<string> {
+  clearTimeout(timeout);
+  converted = "";
+  if (!ignoreCode.includes(ev.code) && !ignoreCode.includes(ev.key)) {
+    scanned += ev.key;
+    if (ev.altKey) {
+      altUsed = true;
+    }
+  }
+  return new Promise((resolve) => {
+    timeout = setTimeout(() => {
+      if (
+        // Desktop USB scanner i.e. Zebra DS2208
+        altUsed &&
+        scanned.length > 4 &&
+        /^[0-9]+$/.test(scanned) &&
+        scanned.length % 4 == 0
+      ) {
+        converted = scanned
+          .split(/(0\d{3})/)
+          .filter((c) => c !== "")
+          .map((v) => {
+            return String.fromCharCode(parseInt(v));
+          })
+          .join("");
+        scanned = "";
+        altUsed = false;
+        return resolve(converted);
+      } else if (
+        // Mobile scanner i.e. Zebra MC3400
+        !altUsed &&
+        scanned.length > 2 &&
+        /^[0-9A-F]+$/.test(scanned) &&
+        scanned.length % 2 == 0
+      ) {
+        converted = scanned
+          .split(/([0-9A-F]{2})/)
+          .filter((c) => c !== "")
+          .map((v) => {
+            return String.fromCharCode(parseInt(v, 16));
+          })
+          .join("");
+        scanned = "";
+        altUsed = false;
+        return resolve(converted);
+      } else {
+        scanned = "";
+        altUsed = false;
+      }
+    }, 30);
+  });
+}
 
 const ignoreCode = [
   "Shift",
@@ -14,150 +69,12 @@ const ignoreCode = [
   "Meta",
   "MetaLeft",
   "MetaRight",
-  "Clear",
+  "CapsLock",
+  "NumLock",
   "Pause",
   "Enter",
   "Tab",
-  "CapsLock",
-  "NumLock",
   "Clear",
   "Backspace",
   "Escape",
-];
-
-const parseAltCode = (altString: string) => {
-  let codes = [];
-  let result = "";
-
-  if (altString.length % 4 == 0) {
-    let match = altString.match(/\d{4}/g);
-    if (match) {
-      codes.push(match);
-    }
-  } else if (altString.length % 3 == 0) {
-    let match = altString.match(/\d{4}/g);
-    if (match) {
-      codes.push(match);
-    }
-  } else if (altString.length % 2 == 0) {
-    let match = altString.match(/\d{2}/g);
-    if (match) {
-      codes.push(match);
-    }
-  }
-  if (codes) {
-    codes.forEach((code) => {
-      code.forEach((c) => {
-        let parsed = String.fromCharCode(parseInt(c));
-        result += parsed;
-      });
-    });
-  }
-  return result;
-};
-
-export const ScannerOrKeyboardInput = (ev: KeyboardEvent) => {
-  if (!ev.altKey && altString) {
-    scannedString.push(parseAltCode(altString.join("")));
-    altString = [];
-  }
-  // Return our response when requested
-  if (ev.code == "Enter") {
-    let response = scannedString.join("").toUpperCase();
-
-    // If we have a specific barcode format, remove the prefix
-    BarcodeFomat.forEach((bcf) => {
-      const regex = bcf.regex;
-      if (regex?.test(response)) {
-        response = response.replace(regex, "");
-      }
-    });
-
-    // If our input has been purely decimals (multiple groups of 4 digits) then convert it to ASCII
-    // i.e. Zebra DS2208, a desktop USB scanner
-    if (
-      response.length > 4 &&
-      /^[0-9]+$/.test(response) &&
-      response.length % 4 == 0
-    ) {
-      response = response
-        .split(/(0\d{3})/)
-        .filter((c) => c !== "")
-        .map((v) => {
-          return String.fromCharCode(parseInt(v));
-        })
-        .join("");
-    }
-    // If our input has been purely hexadecimal (multiple groups of 2 characters) then convert it to ASCII
-    // i.e. Zebra MC3400, a mobile scanner
-    if (
-      response.length > 2 &&
-      /^[0-9A-F]+$/.test(response) &&
-      response.length % 2 == 0
-    ) {
-      response = response
-        .split(/([0-9A-F]{2})/)
-        .filter((c) => c !== "")
-        .map((v) => {
-          return String.fromCharCode(parseInt(v, 16));
-        })
-        .join("");
-    }
-    // Reset the input before returning the response.
-    scannedString = [];
-    return response;
-  }
-  // Process special keys
-  if (!ignoreCode.includes(ev.code) && !ignoreCode.includes(ev.key)) {
-    if (ev.altKey) {
-      altString.push(ev.key);
-    } else {
-      scannedString.push(ev.key);
-    }
-  }
-  return scannedString.join("").toUpperCase();
-};
-
-type BarcodeFomatType = {
-  type: string;
-  prefix: string;
-  regex?: ReturnType<typeof RegExp>;
-};
-
-const BarcodeFomat = [
-  <BarcodeFomatType>{
-    type: "STX",
-    prefix: "\u{0003}",
-    regex: /^\u0003/,
-  },
-  <BarcodeFomatType>{
-    type: "GROUP_SEPARATOR_SYMBOL",
-    prefix: "\u{001d}",
-    regex: /^\u001d/,
-  },
-  <BarcodeFomatType>{
-    type: "FNC1_SYMBOL",
-    prefix: "\u{00e8}",
-    regex: /^\u00e8/,
-  },
-  <BarcodeFomatType>{
-    type: "FNC1_GS1_DATAMATRIX_SEQUENCE",
-    prefix: "]d2",
-    regex: /^]d2/,
-  },
-  <BarcodeFomatType>{
-    type: "FNC1_GS1_QRCODE_SEQUENCE",
-    prefix: "]Q3",
-    regex: /^]Q3/,
-  },
-  <BarcodeFomatType>{
-    type: "FNC1_GS1_EAN_SEQUENCE",
-    prefix: "]e0",
-    regex: /^]e0/,
-  },
-  <BarcodeFomatType>{
-    type: "FNC1_GS1_128_SEQUENCE",
-    prefix: "]C1",
-    regex: /^]C1/,
-  },
 ];
