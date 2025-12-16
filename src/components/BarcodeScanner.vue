@@ -62,10 +62,10 @@ export default defineComponent({
       config,
       false,
     );
-    html5QrcodeScanner.render(this.onScanSuccess, undefined);
+    html5QrcodeScanner.render(this.parseBarcode, undefined);
   },
   methods: {
-    async onScanSuccess(decodedText: string) {
+    async parseBarcode(decodedText: string) {
       // reset results
       this.parsedBarcode = [];
       this.formattedBarcode = "";
@@ -88,20 +88,20 @@ export default defineComponent({
       }
       let scannedBarcode = await ScannerOrKeyboardInput(ev);
       if (ev.code == "Enter") {
-        this.onScanSuccess(scannedBarcode);
+        this.parseBarcode(scannedBarcode);
       }
     },
     watchPaste(ev: ClipboardEvent) {
       if (ev.isTrusted) {
         let clipboardText = ev.clipboardData?.getData("text");
         if (typeof clipboardText === "string") {
-          this.onScanSuccess(clipboardText);
+          this.parseBarcode(clipboardText);
         }
       }
     },
     async pasteButton() {
       let clipboard = await navigator.clipboard.readText();
-      this.onScanSuccess(clipboard);
+      this.parseBarcode(clipboard);
     },
   },
 });
