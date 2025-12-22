@@ -56,6 +56,12 @@ export const BarcodeParser = async (
       barcodeData.push(parts.replace("=", ""));
     });
   } else {
+    // Sometimes we are scanning the 13-digit GTIN directly, there will be no other AIs present.
+    // Append to 14 digits, then let the parser go as normal.
+    const isNumericGTIN = /^(\d{13})$/
+    if (isNumericGTIN.test(barcode)) {
+      barcode = '010' + barcode
+    }
     // Otherwise, assume any other type of barcode.
     // Strip Headers and Trailers. Split string.
     barcodeData = barcode
