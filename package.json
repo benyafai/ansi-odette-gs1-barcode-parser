@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "html5-qrcode": "^2",
+    "@taluks/html5-qrcode": "^2",
     "vue": "^3"
   },
   "devDependencies": {

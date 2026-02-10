@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5QrcodeScanner } from "@taluks/html5-qrcode";
 import { type AIList } from "../types/ApplicationIdentifierType";
 import { BarcodeParser } from "../uses/BarcodeParser";
 import { BarcodeFormatter } from "../uses/BarcodeFormatter";
