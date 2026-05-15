@@ -24,6 +24,7 @@
     </template>
   </div>
   <a @click="pasteButton()" class="paste">📋</a>
+  <a v-if="serialSupported" @click="webSerialUserConnect()" class="serial">🔌</a>
 </template>
 
 <script lang="ts">
@@ -48,10 +49,27 @@ export default defineComponent({
   data: () => ({
     parsedBarcode: <Results>[],
     formattedBarcode: "",
+    serialSupported: false,
+    port: <SerialPort>{},
+    open: false,
   }),
-  mounted() {
+  async mounted() {
     window.addEventListener("keypress", this.watchKeys);
     window.addEventListener("paste", this.watchPaste);
+    if ("serial" in navigator) {
+      this.serialSupported = true
+      navigator.serial.addEventListener("connect", (event) => {
+        console.log("a serial port with permission were connected", event);
+        this.webSerialAutoFind;
+      });
+      navigator.serial.addEventListener("disconnect", (event) => {
+        console.log("a serial port with permission were disconnected", event);
+        if (this.port === (event.target as any) && this.open) {
+          this.port.close();
+        }
+      });
+    }
+    this.webSerialAutoFind();
     const config = {
       fps: this.fps ? this.fps : 10,
       qrbox: this.qrbox ? this.qrbox : 250,
@@ -65,6 +83,67 @@ export default defineComponent({
     html5QrcodeScanner.render(this.parseBarcode, undefined);
   },
   methods: {
+    async webSerialAutoFind() {
+      if (this.open) {
+        await this.port.close();
+      }
+      const usbVendorId = parseInt(localStorage.getItem("usbVendorId") ?? "");
+      const usbProductId = parseInt(localStorage.getItem("usbProductId") ?? "");
+      if (!usbVendorId || !usbProductId) {
+        return;
+      }
+      const ports = await navigator.serial.getPorts();
+      const port = ports.find((p: any) => {
+        const info = p.getInfo();
+        return (
+          info.usbVendorId === usbVendorId && info.usbProductId === usbProductId
+        );
+      });
+      if (port) {
+        this.port = port;
+        this.webSerialOpenRead();
+      }
+    },
+    async webSerialUserConnect() {
+      if ("serial" in navigator) {
+        if (this.open) {
+          await this.port.close();
+        }
+        this.port = await navigator.serial.requestPort();
+        const portInfo = this.port.getInfo();
+        localStorage.setItem("usbVendorId", portInfo.usbVendorId + "");
+        localStorage.setItem("usbProductId", portInfo.usbProductId + "");
+        this.webSerialOpenRead();
+      } else {
+        console.log("Browser does not support webserial");
+      }
+    },
+    async webSerialOpenRead() {
+      await this.port.open({ baudRate: 9600 });
+      this.open = true;
+      console.log("Device connected:" + JSON.stringify(this.port.getInfo()));
+      while (this.port.readable) {
+        const reader = this.port.readable.getReader();
+        try {
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) {
+              break;
+            }
+            const newString = value.reduce(
+              (acc: string, ele: number) => acc + String.fromCharCode(ele),
+              "",
+            );
+            this.parseBarcode(newString);
+          }
+        } catch (error) {
+          reader.releaseLock();
+          console.log(error);
+        } finally {
+          reader.releaseLock();
+        }
+      }
+    },
     async parseBarcode(decodedText: string) {
       // reset results
       this.parsedBarcode = [];

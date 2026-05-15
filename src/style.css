@@ -95,7 +95,15 @@ summary {
     filter: grayscale(100%);
     position: fixed;
     bottom: 1em;
-    left: 0;
+    left: 1em;
+    width: 5vw;
+    text-align: center;
+}
+.serial {
+    filter: grayscale(100%);
+    position: fixed;
+    bottom: 1em;
+    left: 4em;
     width: 5vw;
     text-align: center;
 }
