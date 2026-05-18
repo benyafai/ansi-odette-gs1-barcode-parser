@@ -52,6 +52,7 @@ export default defineComponent({
     serialSupported: false,
     port: <SerialPort>{},
     open: false,
+    serialOutput: "",
   }),
   async mounted() {
     window.addEventListener("keypress", this.watchKeys);
@@ -130,11 +131,14 @@ export default defineComponent({
             if (done) {
               break;
             }
-            const newString = value.reduce(
+            this.serialOutput = this.serialOutput + value.reduce(
               (acc: string, ele: number) => acc + String.fromCharCode(ele),
               "",
             );
-            this.parseBarcode(newString);
+            if (value.includes(13)) {
+              this.parseBarcode(this.serialOutput);
+              this.serialOutput = ""
+            }
           }
         } catch (error) {
           reader.releaseLock();
