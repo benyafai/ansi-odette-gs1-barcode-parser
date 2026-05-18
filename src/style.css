@@ -91,21 +91,20 @@ summary {
     padding-block-end: 15em;
 }
 
-.paste {
-    filter: grayscale(100%);
-    position: fixed;
-    bottom: 1em;
-    left: 1em;
-    width: 5vw;
-    text-align: center;
-}
+.paste,
 .serial {
     filter: grayscale(100%);
     position: fixed;
     bottom: 1em;
-    left: 4em;
-    width: 5vw;
+    width: 2vw;
     text-align: center;
+    padding: 0.4em;
+}
+.paste {
+    left: 3em;
+}
+.serial {
+    left: 7em;
 }
 
 @media (max-width: 640px) {
