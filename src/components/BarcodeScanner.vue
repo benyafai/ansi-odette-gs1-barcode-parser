@@ -122,7 +122,7 @@ export default defineComponent({
       await this.port.open({ baudRate: 9600 });
       this.open = true;
       console.log("Device connected:" + JSON.stringify(this.port.getInfo()));
-      while (this.port.readable) {
+      if (this.port.readable) {
         const reader = this.port.readable.getReader();
         try {
           while (true) {
