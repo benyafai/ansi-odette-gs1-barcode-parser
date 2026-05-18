@@ -136,7 +136,7 @@ export default defineComponent({
               "",
             );
             if (value.includes(13)) {
-              this.parseBarcode(this.serialOutput);
+              this.parseBarcode(this.serialOutput.trim());
               this.serialOutput = ""
             }
           }
