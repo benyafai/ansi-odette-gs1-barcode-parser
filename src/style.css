@@ -89,6 +89,7 @@ summary {
 }
 #result {
     padding-block-end: 15em;
+    white-space: pre;
 }
 
 .paste,
